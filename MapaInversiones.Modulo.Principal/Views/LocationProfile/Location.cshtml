@@ -753,7 +753,7 @@
             divProject = divProject + '<div class="data1"><span class="labelTit">Presupuesto vigente (' + (new Date()).getFullYear() + ')</span><span class="td1 blueT">RD$' + project.vlrTotalProyectoTodasLasFuentes.formatMoney(0, '.', ',') + '</span></div>';
             divProject = divProject + '</div>';
             divProject = divProject + '<div class="btn-action">';
-            divProject = divProject + '<div class="btnPerfil"><a target="_blank" href="/projectprofile/' + project.idProyecto + '" class="text-small"><i class="material-icons md-18">arrow_forward</i><br> <span>Ver proyecto</span></a></div>';
+            divProject = divProject + '<div class="btnPerfil"><a target="_blank" rel="noopener" href="/projectprofile/' + project.idProyecto + '" class="text-small"><i class="material-icons md-18">arrow_forward</i><br> <span>Ver proyecto</span></a></div>';
             divProject = divProject + '</div></div>';
             return divProject;
         }

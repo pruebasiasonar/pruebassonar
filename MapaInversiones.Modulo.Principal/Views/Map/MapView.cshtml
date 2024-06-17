@@ -327,16 +327,7 @@
                                                 </div>
                                             </div>
 
-                                            @*<div id="share">
-                <p>@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_Busqueda_CompartirBusqueda")</p>
-                <div class="container-share">
-                    <a href="" class="facebook" target="_blank">facebook</a>
-                    <a href="" class="twitter" target="_blank">twitter</a>
-                    <a href="#" class="email" data-share-by-email="yeah" target="_blank">email</a>
-                    <a href="#" class="print">print</a>
-                </div>
-            </div>*@
-                                        </div><!-- wrap-gray -->
+              </div><!-- wrap-gray -->
 
                                     </div><!-- END MAP VIEW -->
 
@@ -444,15 +435,14 @@
                             <div Style="visibility: hidden; display: none;" class="centered content" id="infographic">
                                 <div class="txt-right">
                                     <a href="/Como-funciona/" class="button conoce-como">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_DebajoMapa_ComoSeCalculan")</a>
-                                    <a Style="visibility: hidden; display: none;" href=@ViewBag.TitulosHome.BuscarTituloPorLlave("URL_Historico_Rendiciones") target="_blank" class="button conoce-como">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_DebajoMapa_RendicionCuentas")</a>
+                                    <a Style="visibility: hidden; display: none;" href=@ViewBag.TitulosHome.BuscarTituloPorLlave("URL_Historico_Rendiciones") target="_blank" rel="noopener" class="button conoce-como">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_DebajoMapa_RendicionCuentas")</a>
                                 </div>
                                 <h2 class="title-1">
                                     @ViewBag.TitulosHome.BuscarTituloPorLlave("Home_DatosConsolidados_TituloPrincipal")
                                     <span id="info-select-list-period" data-bind="foreach: periods">
                                         <span class="select select-period extra" data-bind="css: { selected: active(), hidden: hidden }" id="info-select-period">
                                             <span class="txt extra" data-bind="html: getNameDefault(), tap: toggleVisible">
-                                                @*<span>2012 en adelante</span>*@
-                                            </span>
+                                                   </span>
                                             <span class="filter-list">
                                                 <span class="options-container">
                                                     <span class="options" data-bind="foreach: options, tap: optionClicked">
