@@ -5592,6 +5592,15 @@ namespace DataModels
 
 		#endregion
 
+		#region LLenarBusqueda
+
+		public static int LLenarBusqueda(this NuevaVisionRDDB dataConnection)
+		{
+			return dataConnection.ExecuteProc("[dbo].[LLenarBusqueda]");
+		}
+
+		#endregion
+
 		#region LLenarBusquedaCovid
 
 		public static int LLenarBusquedaCovid(this NuevaVisionRDDB dataConnection)
