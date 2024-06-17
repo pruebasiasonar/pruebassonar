@@ -8211,7 +8211,7 @@ define('location_profile',[
             var consolidadoPunto = txtConsolidado.split('.');
             if (txtConsolidado != "" && consolidadoPunto.length == 1) txtConsolidado = txtConsolidado.trim() + ".";
 
-	        var txtDescriptivo_aux = $("#nomLocation").text() + " es la capital y la ciudad más poblada de la República del Paraguay. El área metropolitana, llamada Gran Asunción, incluye las ciudades de San Lorenzo, Fernando de la Mora, Lambaré, Luque, Mariano Roque Alonso, Ñemby, San Antonio, Limpio, Capiatá y Villa Elisa, que forman parte del Departamento Central. El área metropolitana tiene más de 2 millones de habitantes.";
+	        var txtDescriptivo_aux = $("#nomLocation").text() + " es la capital y la ciudad más poblada.";
 	        var txtDescriptivo = "";
 	        var div_txtPadre = d3.select("#divTxtTodosProy")
 	        div_txtPadre.append("h2")

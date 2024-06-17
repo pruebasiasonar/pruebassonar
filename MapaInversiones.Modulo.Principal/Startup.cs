@@ -190,12 +190,6 @@ namespace PlataformaTransparencia.Modulo.Principal
                 defaults: new { controller = "Home", action = "PlanODS" }
             );
 
-            routes.MapAreaControllerRoute(
-                    name: "PlanificacionParaguay",
-                    areaName: "PlataformaTransparencia.Modulo.Principal",
-                    pattern: "PlanificacionParaguay",
-                    defaults: new { controller = "Home", action = "PlanificacionParaguay" }
-            );
 
             routes.MapAreaControllerRoute(
                     name: "PresupuestoResultados",

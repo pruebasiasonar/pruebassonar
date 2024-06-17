@@ -14,11 +14,6 @@
                                     Acerca de MapaInversiones Republica Dominicana
                                 </a>
                             </li>
-                            <!--<li class="nav-item">
-        <a href="/CentroAyuda?id=1" title="Centro de Ayuda">
-            Glosario
-        </a>
-    </li>-->
                             <li class="nav-item">
                                 <a href="/CentroAyuda?id=2" title="Centro de Ayuda">
                                     Centro de Ayuda
@@ -34,40 +29,7 @@
                                     Contáctenos
                                 </a>
                             </li>
-                            <!--<li class="nav-item">
-        <a href="#" title="log in">
-            Log in
-        </a>
-    </li>-->
-                            @*@if (User.Identity.IsAuthenticated)
-            {<text>
-                    <li>
-                        <form method="post" class="form-inline" action="/Users/LogOff">
-                            <button type="submit" class="btn-sesionHome" role="button">Cerrar sesión</button>
-                            @Html.AntiForgeryToken()
-                        </form>
-
-                    </li>
-                    <li>
-                        <a href="#!" title="@User.Identity.Name">
-                            @User.Identity.Name
-                        </a>
-                    </li>
-            </text>
-        }
-        else
-        {
-            <li>
-                <a href="/Login" title="Inicie sesión">
-                    Inicie sesión
-                </a>
-            </li>
-            <li>
-                <a href="/Register" title="Registrese">
-                    ¿Nuevo usuario?
-                </a>
-            </li>
-        }*@
+                          
                         </ul>
                     </div>
                 </div>

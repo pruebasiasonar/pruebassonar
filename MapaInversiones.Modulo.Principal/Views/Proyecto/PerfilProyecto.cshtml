@@ -33,8 +33,6 @@
 
 }
 
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
-
 <input type="hidden" id="hdNomUsuario" value="" />
 <input type="hidden" id="hdIdUsuario" value="" />
 <body>
@@ -80,11 +78,6 @@
                             </h2>
                         </div>
                         <div class="banner-main-desc">
-                            @*<div class="sub_t0_gray text-center">
-                                    <ul class="list-inline optionList">
-                                        <li><span class="glyphicon glyphicon-comment"></span><text id="spComentarios">Comments(@Model.ProjectInformation.contComentarios)</text></li>
-                                    </ul>
-                                </div>*@
                             <h6 class="sub_t1_red text-center">
                                 SECTOR
                                 <br />
@@ -104,12 +97,10 @@
                                             if (@item.Tipo == "MUNICIPIO")
                                             {
                                                 <li>@item.Nombre ,</li>
-                                                //<a class="enlace_ficha" role="button" tipo="@item.Tipo" location_id="@item.IdMunicipio"></a>
                                             }
                                             else if (@item.Tipo == "DEPARTAMENTO" || @item.Tipo == "REGION")
                                             {
                                                 <li>@item.Nombre ,</li>
-                                                //<a class="enlace_ficha" role="button" tipo="@item.Tipo" location_id="@item.IdDepartamento"></a>
                                             }
                                             else
                                             {
@@ -122,12 +113,10 @@
                                             if (@item.Tipo == "MUNICIPIO" || @item.Tipo == "COUNTY")
                                             {
                                                 <li>@item.Nombre</li>
-                                                //<a class="enlace_ficha" role="button" tipo="@item.Tipo" location_id="@item.IdMunicipio"></a>
                                             }
                                             else if (@item.Tipo == "DEPARTAMENTO" || @item.Tipo == "REGION")
                                             {
                                                 <li>@item.Nombre</li>
-                                                //<a class="enlace_ficha" role="button" tipo="@item.Tipo" location_id="@item.IdDepartamento"></a>
                                             }
                                             else
                                             {
@@ -150,12 +139,10 @@
                                                 @if (@item.Tipo == "MUNICIPIO" || @item.Tipo == "COUNTY")
                                                 {
                                                     <li>@item.Nombre ,</li>
-                                                    //<a class="enlace_ficha" role="button" tipo="@item.Tipo" location_id="@item.IdMunicipio"></a>
                                                 }
                                                 else if (@item.Tipo == "DEPARTAMENTO" || @item.Tipo == "REGION")
                                                 {
                                                     <li>@item.Nombre ,</li>
-                                                    //<a class="enlace_ficha" role="button" tipo="@item.Tipo" location_id="@item.IdDepartamento"></a>
                                                 }
                                                 else
                                                 {
@@ -163,9 +150,7 @@
                                                 }
                                             </text>
                                         }
-                                        //else {
-                                        //    beneficiarios += "<li>@item.Nombre</li>";
-                                        //}
+
                                         beneficiarios += ""+@item.Nombre+", ";
                                         count++;
                                     }
@@ -184,22 +169,7 @@
                                 <h3 id="lblCostoEstimado">RD$ @String.Format(cultureCountry, "{0:n1}", Model.ProjectInformation.TotalValue)</h3>
                                 <h6>Costo Estimado</h6>
                             </li>
-                            @*@if (Model.ProjectInformation.IDMoneda != "HNL")
-                            {
-                                <li>
-                                    <h3>@Model.ProjectInformation.IDMoneda @String.Format(cultureHN, "{0:n1}", Model.ProjectInformation.TotalValueAll)</h3>
-                                    <h6>Costo en otra moneda</h6>
-                                </li>
-
-                                <li>
-                                    <h3>@Model.ProjectInformation.IDMoneda @String.Format(cultureHN, "{0:n1}", Model.ProjectInformation.TasaCambio)</h3>
-                                    <h6>Tasa de Cambio</h6>
-                                </li>
-                            }*@
-                            <!--<li>
-                                <h3>@Model.ProjectInformation.avance_financiero %</h3>
-                                <h6>Avance Financiero</h6>
-                            </li>-->
+                          
                         </ul>
                     </div>
                 </div>
@@ -212,10 +182,7 @@
                     <span class="ic-shortcut"><i class="material-icons md-24">feed</i></span>
                     <span class="text-btn">Información General</span>
                 </a>
-                @*<a class="btn-section" href="#s2">
-                        <span class="ic-shortcut"><i class="material-icons md-24">ballot</i></span>
-                        <span class="text-btn">Entregables</span>
-                    </a>*@
+              
                 <a class="btn-section" href="#s2">
                     <span class="ic-shortcut"><i class="material-icons md-24">earbuds</i></span>
                     <span class="text-btn">Proceso de Contratación</span>
@@ -228,10 +195,7 @@
                     <span class="ic-shortcut"><i class="material-icons md-24">speaker_notes</i></span>
                     <span class="text-btn">Participación Ciudadana</span>
                 </a>
-                @*<a class="btn-section" href="#s3" id="btnGenPdfProy">
-                        <span class="ic-shortcut"><i class="material-icons md-24">sim_card_download</i></span>
-                        <span class="text-btn">Descargar Pdf</span>
-                    </a>*@
+
             </div>
         </div>
     </section>
@@ -252,18 +216,7 @@
                                         <span class="label-desc">Institución Ejecutora Principal</span>
                                         <span class="text-desc">@Model.ProjectInformation.NombreActor</span>
                                     </li>
-                                    @*<li class="data-list">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <span class="label-desc">Etapa</span>
-                                                    <span class="text-desc">@Model.ProjectInformation.Etapa</span>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <span class="label-desc">Fase</span>
-                                                    <span class="text-desc">@Model.ProjectInformation.Fase</span>
-                                                </div>
-                                            </div>
-                                        </li>*@
+                                   
                                     <li class="data-list">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -300,27 +253,7 @@
                                         </li>
                                         </text>
                                      }
-                                    @*<li class="data-list">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h5 class="label-benf">Beneficiarios</h5>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="bIcon">
-                                                        <img src="../img/svg-icons/BmanPP.svg" />
-                                                    </div>
-                                                    <span class="label-benf">Hombres</span>
-                                                    <span class="text-desc">@Model.ProjectInformation.NumBeneficHombres</span>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="bIcon">
-                                                        <img src="../img/svg-icons/BmanWM.svg" />
-                                                    </div>
-                                                    <span class="label-benf">Mujeres</span>
-                                                    <span class="text-desc">@Model.ProjectInformation.NumBeneficMujeres</span>
-                                                </div>
-                                            </div>
-                                        </li>*@
+                                
                                 </ul>
                             </div>
 
@@ -329,18 +262,7 @@
                 </div>
                 <!--GRAPH SIDE-->
                 <div class="col-lg-8">
-                   @* <div class="row mb-4">
-                        <div class="col-lg-12">
-                            <div class="card shadow border-0 card-entidad">
-                                <div class="card-body">
-                                    <div class="heading-Project">
-                                        <h5><img src="../img/svg-icons/ICO_desc.svg" />Descripción</h5>
-                                    </div>
-                                    <span class="text-desc">@Model.ProjectInformation.descripcion</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
+
                      <div class="mb-4">
                             <div class="card">
                                 <div class="card-body">
@@ -532,27 +454,6 @@
                 <div class="col-md-3">
 
                     <form class="contractList bgSoftGray">
-                        @*<div class="form-group">
-                                <label class="year" for="year">Año</label>
-                                <select class="form-control" id="top_contratos_periodos"></select>
-
-                            </div>*@
-                        @*<div class="form-group">
-                                <label class="year" for="year">Estado</label>
-                                <select class="form-control" id="top_contratos_estados">
-                                    <option value="">Todos los Estados</option>
-                                    @if (Model.Consolidados.Count > 0)
-                                    {
-                                        foreach (var item in Model.Consolidados)
-                                        {
-                                            <text>
-                                                <option value="@item.EstadoContrato">@item.EstadoContrato</option>
-                                            </text>
-                                        }
-                                    }
-                                </select>
-
-                            </div>*@
                         <div class="form-group">
                             <label class="year" for="entidad">Año</label>
                             <select class="form-select" id="top_origen_informacion">
@@ -577,162 +478,7 @@
                     <!--ESTRUCTURA HTML PARA TOMAR COMO REFERENCIA-->
                     <!--CIERRE DE ESTRUCTURA-->
                     <div class="wrap-proceso whiteBg" id="srcContratos">
-                        @*<div class="contractBox">
-                                <div class="cotractName contractONCAE">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12">
-                                            <span class="small">Obra</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Lote 1 “Equipo Generador de la Central Hidroeléctrica Cañaveral (Adquisición e instalación de los Equipos Principales y Auxiliares)”  (Obras Civiles Asociadas)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="processName">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Fuente de Financiamiento</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Crédito Externo</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Monto</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">L 433.395.229,75</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap-head-process">
-                                    <div class="contractData">
-                                        <div class="row border-b">
-                                            <div class="col-xs-4 col-md-2">
-                                                <span class="small">Convenio</span>
-                                                <span class="amount_adj">BCIE 2177</span>
-                                            </div>
-                                            <div class="col-md-6 offset-md-4">
-                                                <span class="small">Tipo de Proceso</span>
-                                                <span class="amount_adj">LICITACIÓN PÚBLICA INTERNACIONAL (LPI)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contractBox">
-                                <div class="cotractName contractONCAE">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12">
-                                            <span class="small">Obra</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Lote 1 “Equipo Generador de la Central Hidroeléctrica Cañaveral (Adquisición e instalación de los Equipos Principales y Auxiliares)”  (Obras Civiles Asociadas)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="processName">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Fuente de Financiamiento</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Crédito Externo</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Monto</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">L 433.395.229,75</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap-head-process">
-                                    <div class="contractData">
-                                        <div class="row border-b">
-                                            <div class="col-xs-4 col-md-2">
-                                                <span class="small">Convenio</span>
-                                                <span class="amount_adj">BCIE 2177</span>
-                                            </div>
-                                            <div class="col-md-6 offset-md-4">
-                                                <span class="small">Tipo de Proceso</span>
-                                                <span class="amount_adj">LICITACIÓN PÚBLICA INTERNACIONAL (LPI)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contractBox">
-                                <div class="cotractName contractONCAE">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12">
-                                            <span class="small">Obra</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Lote 1 “Equipo Generador de la Central Hidroeléctrica Cañaveral (Adquisición e instalación de los Equipos Principales y Auxiliares)”  (Obras Civiles Asociadas)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="processName">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Fuente de Financiamiento</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Crédito Externo</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Monto</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">L 433.395.229,75</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap-head-process">
-                                    <div class="contractData">
-                                        <div class="row border-b">
-                                            <div class="col-xs-4 col-md-2">
-                                                <span class="small">Convenio</span>
-                                                <span class="amount_adj">BCIE 2177</span>
-                                            </div>
-                                            <div class="col-md-6 offset-md-4">
-                                                <span class="small">Tipo de Proceso</span>
-                                                <span class="amount_adj">LICITACIÓN PÚBLICA INTERNACIONAL (LPI)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contractBox">
-                                <div class="cotractName contractONCAE">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12">
-                                            <span class="small">Obra</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Lote 1 “Equipo Generador de la Central Hidroeléctrica Cañaveral (Adquisición e instalación de los Equipos Principales y Auxiliares)”  (Obras Civiles Asociadas)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="processName">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Fuente de Financiamiento</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">Crédito Externo</span>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <span class="small">Monto</span>
-                                            <div class="clearfix"></div>
-                                            <span class="h4">L 433.395.229,75</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap-head-process">
-                                    <div class="contractData">
-                                        <div class="row border-b">
-                                            <div class="col-xs-4 col-md-2">
-                                                <span class="small">Convenio</span>
-                                                <span class="amount_adj">BCIE 2177</span>
-                                            </div>
-                                            <div class="col-md-6 offset-md-4">
-                                                <span class="small">Tipo de Proceso</span>
-                                                <span class="amount_adj">LICITACIÓN PÚBLICA INTERNACIONAL (LPI)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*@
+                     
                     </div>
 
                     <div id="divPagContratos" class="">
@@ -900,7 +646,7 @@
                                         foreach (var item in Model.ProjectInformation.EntesBeneficiados)
                                         {
                                             <option value="@(item.IdMunicipio)-@(item.IdDepartamento)"> @item.Nombre </option>
-                                            //+"@item.IdDepartamento"
+
                                         }
                                     }
                                 </select>
@@ -1139,7 +885,6 @@
                                 <h3 id="divNomUsuarioLog"></h3><br>
                                 <br>
 
-                                @*ParticipacionComentarios*@
                                 <div id="divTipoComentario" class="form-group">
                                     <label for="filtro_TipoCometario" class="required">Tipo de comentario:</label>
                                     <select class="form-select" aria-label="Selecciona un tipo comentario" id="filtro_TipoCometario">
@@ -1172,7 +917,7 @@
                                     </div>
 
                                 </div>
-                                @*ParticipacionComentarios*@
+                               
                                 <div>
                                     <label for="txtcomentario" class="required">Escribe tu comentario:</label>
                                     <div id="divComentario">
@@ -1190,9 +935,7 @@
                                     <button type="button" class="btn btn-primary" id="btnGuardarComent"> ENVIAR </button><br><br>
                                     <a href="">CANCELAR</a>
                                 </div>
-                                @*ParticipacionCuestionario*@
-                                @*<div class="boxQuestions" id="divDetPreguntas">
-                                    </div>*@
+
                             </div>
                         </div>
                     </div>
@@ -1204,7 +947,6 @@
                                 <span class="h3 orangeLink" id="txtMsgConfirmaEnvio"></span><br>
                                 <span class="h4">Tu comentario será publicado cuando el administrador lo verifique</span>
                                 <div class="closeSesion"><a href="../../" class="btn btn-default">Comentar otro proyecto</a></div>
-                                @*<div class="closeSesion"><a href="">Cerrar Sesion <span class="glyphicon glyphicon-arrow-right"></span></a></div>*@
                             </div>
                         </div>
                     </div>
@@ -1428,21 +1170,10 @@
             // Add the uploaded image content to the form data collection
             if (files.length > 0)
             {
-              console.log("Entró por files:");
-                //using(var ms = new MemoryStream())
-                //{
-                //  files[0].CopyTo(ms);
-                //  var fileBytes = ms.ToArray();
-                //  string s = Convert.ToBase64String(fileBytes);
-                //  console.log("Imagen:" + s);
-                //  // act on the Base64 data
-                //}
+
 
                 if (files[0].size < maxFileSize) {
-                    /*data.append("UploadedImage", files[0]);
-                    data.append("DescripcionImage", $('#tbDescripcion').val());
-                    data.append("LocationImage", $('#filtro_AreaFotoUsuUpload option:selected').val());*/
-                    //data.append("ProjectImage",@Model.idproject);
+
                   console.log(files[0]);
 
 

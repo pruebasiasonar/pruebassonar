@@ -1130,10 +1130,6 @@ Number.prototype.formatDecimal = function (c, d, t) {
 };
 
 function ConvertirNumeroNotacionPais (localCulture, n, d) {
-  //  var locales = [
-  //  'es-PY',	  // Paraguay
-  //   //undefined, // Your own browser
-  //];
   var opts = { minimumFractionDigits: d };
   return n.toLocaleString(localCulture, opts);
 };

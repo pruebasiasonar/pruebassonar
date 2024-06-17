@@ -143,11 +143,6 @@ namespace PlataformaTransparencia.Modulo.Principal.Controllers
             return View();
         }
 
-        public ActionResult PlanificacionParaguay()
-        {
-            return View();
-        }
-
         public ActionResult PresupuestoResultados()
         {
             return View();

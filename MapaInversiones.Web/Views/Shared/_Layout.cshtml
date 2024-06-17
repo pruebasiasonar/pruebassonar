@@ -265,17 +265,6 @@ else
         });
 
     </script>
-    @*<script type="text/javascript">
-
-        $(document).ready(function () {
-            $("#SearchString").blur(function () {
-                $('#contentSearchDiv').attr("class", "form-field");
-            }).focus(function () {
-               $('#contentSearchDiv').attr("class", "form-field focus");
-            });
-        });
-
-        </script>*@
     @if (IsSectionDefined("scripts"))
     {
         RenderSection("scripts", required: false);

@@ -182,40 +182,7 @@ new System.Globalization.CultureInfo("es-RD");
 
 
                     </div>
-                    @* <div class="form-group">
-                        <label class="origen" for="top_origen_informacion">Fuente de Datos</label>
-                        <select class="form-select" id="top_origen_informacion">
-                            <option value="">Todos</option>
-                            @if (Model.OrigenInformacion.Count > 0)
-                            {
-                                foreach (var item in Model.OrigenInformacion)
-                                {
-                                    <text>
-                                        <option value="@item">@item.Trim().ToUpper().Replace("ONCAE - CATALOGO ELECTRÓNICO", "ONCAE - CATÁLOGO ELECTRÓNICO")</option>
-                                    </text>
-                                }
 
-                            }
-                        </select>
-                    </div> *@
-
-                    @*<div class="form-group">
-                            <label class="year" for="entidad">Entidad</label>
-
-                            <input type="search" data-results="search-home" data-search="home" id="entidad" class="search-input form-control input-lg" autocomplete="on" placeholder="Entidad">
-
-                            <div id="search-home" class="search-body">
-                                <div id="divNoEncontrado" class="no-search-results" style="display: none;">No se han encontrado entidades</div>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="year" for="proceso">Palabra Clave</label>
-
-                            <input type="search" data-results="search-home" data-search="home" id="proceso" class="search-input form-control input-lg" autocomplete="on" placeholder="Ventilador, reactivos, etc.">
-
-                        </div>*@
                     <div class="triggerForm">
                         <input type="button" class="btn btn-primary" value="Buscar" id="btn-buscar" disabled=""><div class="clearfix"></div>
                         <a class="btn btn-link" id="btnLimpiar" disabled="disabled">LIMPIAR FILTROS</a>

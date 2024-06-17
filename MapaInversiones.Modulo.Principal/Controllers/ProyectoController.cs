@@ -168,7 +168,7 @@ namespace PlataformaTransparencia.Modulo.Principal.Controllers
     {
       string outTxt = "";
       //int idProyecto = info.ProjectId;
-      string logo = "<div style='width:150px;padding;color:#0D382E;font-weight:600;'>MapaInversiones Honduras</div> <div class='separador'><img src='http://investmentmap.eastus.cloudapp.azure.com:8082/img/logoMIV.svg' width='50' height='50'></div>";
+      string logo = "<div style='width:150px;padding;color:#0D382E;font-weight:600;'>MapaInversiones del país</div> <div class='separador'><img src='http://investmentmap.eastus.cloudapp.azure.com:8082/img/logoMIV.svg' width='50' height='50'></div>";
       string titulo_sector = "SECTOR "+ info.Resumen.Sector.ToString().ToUpper();
       string encabezado = "<div id='infoEncabezado' style='padding:10px;'>" +
                   "<div class='row'>" +
@@ -178,35 +178,7 @@ namespace PlataformaTransparencia.Modulo.Principal.Controllers
                     "<div class='separador_5'></div>" +
                     "<h3 class='sub_t1_red text-center'>" + titulo_sector + "</h3>" +
                     "<div class='sub_t2_red text-center'>";
-      //if (info.EntesBeneficiados.Count < 4)
-      //{
-      //  var count = 0;
-      //  var cant_items = info.EntesBeneficiados.Count;
-      //  foreach (var item in info.EntesBeneficiados)
-      //  {
-      //    if (count < cant_items - 1)
-      //    {
-      //      encabezado += "<span>" + item.Nombre + ",</span>";
-      //    }
-      //    else
-      //    {
-      //      encabezado += "<span>" + item.Nombre + "</span>";
-      //    }
-      //    count++;
-      //  }
-      //}
-      //else
-      //{
-      //  var count = 0;
-      //  foreach (var item in info.EntesBeneficiados)
-      //  {
-      //    if (count <= 2)
-      //    {
-      //      encabezado += "<span>" + item.Nombre + ",</span>";
-      //    }
-      //    count++;
-      //  }
-      //  encabezado += "<span> y otros " + (count - 3) + "</span>";
+      </span>";
       //}
       encabezado += "</div>" +
       "</div></div><div class='separador_10'></div>" +

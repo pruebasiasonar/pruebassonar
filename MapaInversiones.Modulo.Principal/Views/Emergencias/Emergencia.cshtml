@@ -415,30 +415,6 @@
         </div>
 
 
-
-
-
-
-
-        <!--<p class="text-center">Existen <span class="text-bold">21 entidades responsables de la gestión de los recursos</span> para mitigar la emergencia, de las cuales @Model.resumenDatosContratos.listUnidadCompra.Count() han iniciado procesos contractuales.</p>-->
-        @*<div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-        <div class="wrap-selector-entidad">
-        <div class="form-group">
-        <label for="selectorEntidad">Seleccione una entidad</label>
-        <select class="form-control" id="selectorEntidad">
-        <option value="">Seleccione...</option>
-        @foreach (var item in Model.resumenDatosContratos.listUnidadCompra)
-        {
-        <option value="@item.Entidad">@item.Entidad (@item.NroProcesos procesos)</option>
-        }
-        </select>
-        </div>
-        </div>
-        </div>
-        </div>*@
-
-
     </div>
 </section>
 
@@ -613,61 +589,6 @@
 </section>
 <input type="hidden" id="tipoemergencia" value="@Model.TipoEmergencia" />
 
-@*<!--DATOS ABIERTOS, new ViewDataDictionary { { "id", "emergencia" } }-->
-@{
-    var parame = "emergencia" + @Model.TipoEmergencia;
-
-}
-<input type="hidden" id="param" value="@parame" />
-
-
-<section class="Sec_Data">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="headTit">
-                    <img src="~/content/img/covid/ic_openData.svg" alt="Datos abiertos" /> <h2>Datos abiertos</h2>
-                    <div class="clearfix"></div>
-                    <p class="text-center">Descargue datos públicos en formatos abiertos. </p>
-
-                </div>
-            </div>
-            <div class="col-lg-4 col-lg-offset-4">
-                <label for="opendata">Seleccione el set de datos:</label>
-                <select name="opendata" class="form-control" id="opendatalst"></select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box-opendata">
-                    <!--<div class="icon-box-opendata"><img src="~/content/img/covid/ic_openData.png" alt="icono contratos y procesos open data" /></div>-->
-                    <div class="row">
-                        <!--OPENDATA PROYECTOS-->
-                        <div class="col-md-4 col-md-offset-4">
-                            <div class="rowBox">
-                                <!--<div class="tit-box-opendata"><span class="h5">Proyectos</span></div>-->
-
-                                <div class="action-bar">
-                                    <div class="btnDownloadSection">
-                                        <a id="btncsv" style="display:none;" class="btn btn-outlined" role="button" onclick="_gaq.push(['_trackEvent','Download','CSV',this.href]);" target="_blank" href="~/opendata/Proyectos.csv"> Descargar CSV  <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                                        <a id="btnxls" style="display:none;" class="btn btn-outlined" role="button" onclick="" target="_blank" href="~/opendata/datosabiertosproyectos.xlsx"> Descargar EXCEL<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                                        <a id="btndiccionary" style="display:none;" class="btn btn-outlined gray" onclick="_gaq.push(['_trackEvent','Download','CSV',this.href]);" target="_blank" href="~/opendata/Dictionary/Diccionario de datos Rep Dominicana - Proyectos.xlsx" role="button" id="btnDownloadDiccionario"> Diccionario de datos <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                                    </div>
-                                </div>
-                                <div class="info-data">
-                                    <div class="t1">Fuente: <span id="btnFuente"></span></div>
-                                    @*<div class="t1">Última actualización:<span> @Model.FechaActualizacionContratos </span></div> Sistema Nacional de Inversión Pública,&nbsp;Ministerio de Economía, Planificación y Desarrollo
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>*@
 
 <script>
     var url1 = '@System.Configuration.ConfigurationManager.AppSettings["URLSoloInversion_1"]';
@@ -750,12 +671,8 @@
 
             });
             var cellElements = $carousel.flickity('getCellElements');
-@* 
-            if (cellElements.length > 0) {
-                $carousel.flickity('resize');
-            } *@
 
-$carousel.flickity('resize');
+        $carousel.flickity('resize');
 
 
         })
