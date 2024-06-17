@@ -1,0 +1,148 @@
+﻿@inject OrchardCore.IOrchardHelper Orchard
+    <!--CONTACT US-->
+<!-- Call to action-->
+
+@if (ViewData["ShowContacts"] as bool? ?? true)
+{
+    <section class="section border-t-1">
+        <div class="container">
+            <div class="col-12 text-center">
+                <h3>&#191;No has encontrado lo que estabas buscando&#63;</h3>
+                <div class="section-btns justify-content-center py-3">
+                    <a aria-label="Contactenos" href="/Contactanos" class="btn btn-cards">
+                        <span>CONT&Aacute;CTANOS</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+}
+
+
+<footer class="footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <!-- Begin company info -->
+                    <div class="footer-company-info">
+                        <div class="footer-company-top">
+                            <a href="/">
+                                <img class="img-fluid" src="/img/logoMIV.svg" alt="Logo MapaInversiones">
+                            </a>
+
+
+                        </div>
+
+                    </div>
+                    <!-- End company info -->
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="items">
+                        @{
+                        var menu = await Orchard.GetContentItemByHandleAsync("alias:second-menu");
+                        @foreach (var menuitem in menu.Content.MenuItemsListPart.MenuItems)
+                        {
+
+                            @if (@menuitem.LinkMenuItemPart.Name != null)
+                            {
+                                var enlace = @menuitem.LinkMenuItemPart.Url;
+                                var enlace_aux = "#!";
+                                if (enlace != "")
+                                {
+                                    enlace_aux = enlace;
+                                }
+                            
+                                    <div class="item">
+                                            <p class="footer-item-heading"><a href="@menuitem.LinkMenuItemPart.Url">@menuitem.LinkMenuItemPart.Name</a></p>
+                                        <nav class="footer-nav">
+                                            @if (menuitem.MenuItemsListPart != null)
+                                            {
+
+                                                var cant = @menuitem.MenuItemsListPart.MenuItems.Count;
+                                                <ul class="footer-mnu">
+                                                    @foreach (var submenu in menuitem.MenuItemsListPart.MenuItems)
+                                                    {
+                                                        @if (@submenu.LinkMenuItemPart.Name != null)
+                                                        {
+                                                            var enlace_sub = @submenu.LinkMenuItemPart.Url;
+                                                            var enlace_sub_aux = "#!";
+                                                            if (enlace_sub != "")
+                                                            {
+                                                                enlace_sub_aux = enlace_sub;
+                                                            }
+                                                            <li>
+                                                                <a href="@enlace_sub_aux" class="hover-link" data-title="@submenu.LinkMenuItemPart.Name">
+                                                                    <span>@submenu.LinkMenuItemPart.Name</span>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                </ul>
+
+                                            }
+
+
+                                        </nav>
+                                    </div>
+                            
+
+                            }
+
+                        }
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-company-links text-lg-center py-5">
+
+                        <a href="/Acercade">Acerca de MapaInversiones República Dominicana</a>
+                        <a href="/CentroAyuda?id=2">Centro de Ayuda</a>
+                        <a href="/MarcoLegal">Marco Legal</a>
+                        <a href="/Contactanos">Contáctenos</a>
+                        <a href="/PoliticasdePrivacidad">Pol&iacute;tica de Privacidad</a>
+                        <a href="/TerminosyCondiciones">T&eacute;rminos y Condiciones</a>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 justify-content-center">
+                    <a href="https://www.presidencia.gob.do/" target="_blank">
+                        <img alt="Logo Presidencia República Dominicana" class="img-fluid" src="~/img/logoEntidad.svg" />
+                    </a>
+                    <a href="https://www.hacienda.gob.do/" target="_blank">
+                        <img alt="Logo Ministerio de Hacienda" class="img-fluid" src="~/img/logoEntidad2.svg" />
+                    </a>
+                    <a href="https://mepyd.gob.do/" target="_blank">
+                        <img alt="Logo Ministerio de MEPyD" class="img-fluid" src="~/img/logoEntidad0.svg" />
+                    </a>
+                    <a href="https://www.dgcp.gob.do/" target="_blank">
+                        <img alt="Logo Dirección general de contrataciones públicas" class="img-fluid" src="~/img/logoEntidad3.svg" />
+                    </a>
+                    <br />
+                    <a href="https://www.iadb.org/" target="_blank">
+                        <img alt="Logo iadb" class="img-fluid" src="~/img/Footer/logo-bid.png" />
+                    </a>
+                    <a href="http://www.iadb.org/mapainversiones" target="_blank">
+                        <img alt="Logo Mapainversiones" class="img-fluid" src="~/img/Footer/logo-mapa-inversiones.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

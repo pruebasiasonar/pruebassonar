@@ -1,0 +1,170 @@
+﻿@page
+
+@inject OrchardCore.IOrchardHelper Orchard
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+@*@{ 
+  ViewData["ShowContacts"] = false;
+}*@
+
+<!--MAIN BANNER-->
+<section class="banner-main-asc mb-0">
+
+    <div class="container">
+        <!-- Begin bread crumbs -->
+        <nav class="bread-crumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="bread-crumbs-list">
+                            <li>
+                                <a href="/">Inicio</a>
+                                <i class="material-icons md-18">chevron_right</i>
+                            </li>
+                            <li>Contáctenos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav><!-- End bread crumbs -->
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+                <div class="banner-main-info pb-0">
+                    <div class="banner-main-title">
+                        <h1>Contáctenos</h1>
+                    </div>
+                    <div class="banner-main-desc">
+                        <!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, rutrum vulputate fermentum ullamcorper litora vel, suspendisse ac consequat rhoncus lectus ligula.</p>-->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!--main content-->
+<section class="">
+    <div class="container">
+
+
+        <!--CONTACT FORM-->
+        <div class="sect-tab contacto" id="contacto">
+            <div class="row justify-content-center">
+                <div class="section-heading text-center">
+                    <span class="h4">Envía tus comentarios o sugerencias aquí.</span>
+                </div>
+                @if (ViewBag.tab == null || ViewBag.tab == 3)
+                {
+                    <div class="col-lg-8 content-item">
+                        <div class="row mb-4">
+                            <small>Los campos marcados con (*) son obligatorios</small>
+                        </div>
+
+                        <form action="/workflows/Invoke?token=CfDJ8NnyCMrGXLhJts3STD4i_-tQ9q4J9tzcGiIgqc2L-4-SrsiSg-XnuwS2UZUgGH841rjzwiaj8rvFlYBjEVTadZb1zqIsAsmyxg1uCud-So3D_ahQilZmPafsoAA4SRFCEG2o3gr0nXA_5zLzKDCwCYXW_GhmNwngpwC7bjg3yxBhbWPXFx51mZdAvG4SvGqA44W24ZkzR_gT5ed-v1dwFAdlQFpc4FOHazeoauz5qwMl" method="post" class="contact-form">
+
+                            <!-- Begin hidden Field for send form -->
+                            <input type="hidden" name="form_subject" value="Contact form">
+                            <!-- End hidden Field for send form -->
+                            <div class="row gutters-default">
+                                <div class="col-sm-6 col-12">
+                                    <div class="form-field">
+                                        <label for="contact-name" class="form-label">Nombre *</label>
+                                        <input type="text" class="form-field-input" name="Nombre" value="" autocomplete="off" required="required" id="contact-name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <div class="form-field">
+                                        <label for="contact--last-name" class="form-label">Apellido *</label>
+                                        <input type="text" class="form-field-input" name="Apellido" value="" autocomplete="off" required="required" id="contact--last-name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <div class="form-field">
+                                        <label for="contact-email" class="form-label">Email *</label>
+                                        <input type="email" class="form-field-input" name="Email" value="" autocomplete="off" required="required" id="contact-email">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <div class="form-field">
+                                        <label for="contact-phone" class="form-label">Teléfono</label>
+                                        <input type="tel" class="form-field-input mask-phone" name="Telefono" value="" autocomplete="off" id="contact-phone">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-field">
+                                        <label for="contact-subject" class="form-label">Asunto *</label>
+                                        <input type="text" class="form-field-input" name="Asunto" value="" autocomplete="off" required="required" id="contact-subject">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-field">
+                                        <label for="contact-message" class="form-label">Escriba su mensaje *</label>
+                                        <textarea name="Mensaje" class="form-field-input" id="contact-message" cols="30" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                @Html.AntiForgeryToken()
+                                <div class="col-12">
+                                    <div class="form-btn">
+                                        <button type="submit" class="btn btn-cards btn-w240"><span>Enviar</span> <i class="material-icons md-24">send</i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+                else if (ViewBag.tab == 31)
+                {
+                    <div class="col-lg-8 content-item">
+                        <h2>Mensaje enviado</h2>
+                        <div class="col-12">
+                            <div class="form-btn">
+                                <a href="../Contactanos" class="btn btn-with-icon ripple"><span>Aceptar</span></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.tab == 32)
+                {
+                    <div class="col-lg-8 content-item">
+                        <h2>Error en el guardado </h2>
+                        <div class="col-12">
+                            <div class="form-btn">
+                                <a href="../Contactanos" class="btn btn-with-icon ripple"><span>Aceptar</span></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.tab == 33)
+                {
+                    <div class="col-lg-8 content-item">
+                        <h2>Error en el envio de correo</h2>
+
+                        <div class="col-12">
+                            <div class="form-btn">
+                                <a href="../Contactanos" class="btn btn-with-icon ripple"><span>Aceptar</span></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@*<script type="text/javascript" src="../../js/centroayuda_aux.js"></script>*@
+

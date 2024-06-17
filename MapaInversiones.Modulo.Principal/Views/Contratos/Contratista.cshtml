@@ -1,0 +1,296 @@
+﻿@model PlataformaTransparencia.Modelos.Contratos.ModelContratistaData
+@inject OrchardCore.IOrchardHelper Orchard
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    // var TextMoneda = "";
+    var etiquetas = await Orchard.GetContentItemByHandleAsync("alias:Etiquetas");
+    @*       var LabelContratista = "";
+            var TituloContratista = "";
+
+        }
+        @foreach (var etiqueta in etiquetas.Content.BagPart.ContentItems)
+        {
+            if (@etiqueta.AliasPart.Alias == "Contratista")
+            {
+                LabelContratista = @etiqueta.HtmlBodyPart.Html;
+                TituloContratista = @etiqueta.TitlePart.Title;
+            }
+
+        }*@
+
+System.IFormatProvider culture =
+new System.Globalization.CultureInfo("es-RD");
+}
+<section class="banner-main">
+    <div class="container">
+        <!-- Begin bread crumbs -->
+        <nav class="bread-crumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="bread-crumbs-list">
+                            <li>
+                                <a href="\">Inicio</a>
+                                <i class="material-icons md-18">chevron_right</i>
+                            </li>
+                            <li><a href="#!">Contratista</a><i class="material-icons md-18">chevron_right</i></li>
+                            <li id="nomLocation">@Model.Data[0].Contratista</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav><!-- End bread crumbs -->
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+                <div class="banner-main-info">
+                @if (Model.Data.Count > 0)
+                    {
+                        <div class="banner-main-title mb-0 text-center">
+                            <h1 class="mainTit_t1" id="nomLocation">@Model.Data[0].Contratista</h1>
+                            <span class="h6 sub_t1_red">CONTRATISTA</span>
+
+                        </div>
+                        <div class="banner-main-desc py-4 text-center">
+                            
+                            <ul class="list-inline details">
+                                <li>
+                                    <span class="h2 text-center">@Model.Contratista</span>
+                                    <span class="text-center">RNC/Cédula</span>
+                                </li>
+                                <li>
+                                    <span class="h2 text-center">@Model.Data.Sum(l => l.NumContratos)</span>
+                                    <span class="text-center">Número de Contratos</span>
+                                </li>
+                                <li>
+                                    <span class="h2 text-center">
+                                        RD$
+                                        @if (Model.Data.Sum(l => l.ValorTotalContratos) >= 1000000)
+                                        {
+                                            <text> @String.Format(culture, "{0:n0}",((double)((double)@Model.Data.Sum(l => l.ValorTotalContratos) / (double)1000000)))  Millones</text>
+                                        }
+                                        else
+                                        {
+                                            <text> @String.Format(culture, "{0:n0}",(@Model.Data.Sum(l => l.ValorTotalContratos)))</text>
+                                        }
+                                    </span>
+                                    <span class="text-center">Valor total de contratos  </span>
+                                </li>
+
+
+                            </ul>
+                             
+                            
+                            
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="col-lg-4">
+                                <div class="form-group mb-5">
+                                    <label for="tipo-contrato">Tipo de Contrato</label>
+                                    <select class="form-select" id="tipo-contrato">
+                                        @foreach (var item in Model.Consolidados)
+                                        {
+                                            if (@item.CodigoOrigenInformacion == -1)
+                                            {
+                                                <text>
+                                                <option selected value="">@item.OrigenInformacion (@item.NroContratos)</option>
+                                                </text>
+                                            }
+                                            else
+                                            {
+                                                <text>
+                                                <option value="@item.CodigoOrigenInformacion">@item.OrigenInformacion (@item.NroContratos)</option>
+                                                </text>
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                    else{
+                    <div class="banner-main-desc">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+
+                    </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--NAVIGATION ON PAGE-->
+</section>
+<div class="clearfix"></div>
+<section id="secCantidadContrato" class="section">
+    <div class="container">
+        <!-- CANTIDADES DE CONTRATOS POR AÑO-->
+        <div class="row" id="divContenedorContratosCantidad" style="display:none;">
+            <div class="empty" id="divGraphContratosCantidadCa" style="display:none;">Cargando...</div>
+            <div class="section-heading heading-left" id="title_divGraphContratosCantidad">
+                <h2 class="mb-3">Cantidades de contratos por año</h2>
+
+             </div>
+                <div class="wrap-svggrraph">
+                    @*<svg width="100%" height="280px" id="divGraphContratosCantidad"></svg>*@
+                    <div width="80%" height="400px" id="divGraphContratosCantidad">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section id="secValorContrato" class="section-gray">
+    <div class="container">
+        <!-- VALOR DE CONTRATOS POR AÑO-->
+        <div class="row" id="divContenedorContratosValor" style="display:none;">
+            <div class="empty" id="divGraphContratosValorCa" style="display:none;">Cargando...</div>
+
+            <div class="section-heading heading-left" id="title_divGraphContratosValor">
+                <h2 class="mb-3">Valor de contratos por año</h2>
+             </div>
+            <div class="wrap-svggrraph">
+                @*<svg width="100%" height="280px" id="divGraphContratosValor"></svg>*@
+                <div width="80%" height="400px" id="divGraphContratosValor"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+<section class="section" id="secInfoContratos" data-contratista='[{"contratista_id":"@Model.Contratista"}]'>
+    <div class="container">
+        <div class="section-heading heading-left">
+            <h2 class="mb-4">Buscador Contratos</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+
+                <form class="contractList bgSoftGray">
+                    <div class="form-group">
+                        <label class="year" for="top_contratos_periodos">Año</label>
+                        <select class="form-select" id="top_contratos_periodos"></select>
+
+
+                    </div>
+                    @* <div class="form-group">
+                        <label class="origen" for="top_origen_informacion">Fuente de Datos</label>
+                        <select class="form-select" id="top_origen_informacion">
+                            <option value="">Todos</option>
+                            @if (Model.OrigenInformacion.Count > 0)
+                            {
+                                foreach (var item in Model.OrigenInformacion)
+                                {
+                                    <text>
+                                        <option value="@item">@item.Trim().ToUpper().Replace("ONCAE - CATALOGO ELECTRÓNICO", "ONCAE - CATÁLOGO ELECTRÓNICO")</option>
+                                    </text>
+                                }
+
+                            }
+                        </select>
+                    </div> *@
+
+                    @*<div class="form-group">
+                            <label class="year" for="entidad">Entidad</label>
+
+                            <input type="search" data-results="search-home" data-search="home" id="entidad" class="search-input form-control input-lg" autocomplete="on" placeholder="Entidad">
+
+                            <div id="search-home" class="search-body">
+                                <div id="divNoEncontrado" class="no-search-results" style="display: none;">No se han encontrado entidades</div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="year" for="proceso">Palabra Clave</label>
+
+                            <input type="search" data-results="search-home" data-search="home" id="proceso" class="search-input form-control input-lg" autocomplete="on" placeholder="Ventilador, reactivos, etc.">
+
+                        </div>*@
+                    <div class="triggerForm">
+                        <input type="button" class="btn btn-primary" value="Buscar" id="btn-buscar" disabled=""><div class="clearfix"></div>
+                        <a class="btn btn-link" id="btnLimpiar" disabled="disabled">LIMPIAR FILTROS</a>
+                    </div>
+
+                </form>
+
+            </div>
+            <!--CONTRACT-LIST-->
+            <div class="col-lg-9">
+                <!--ESTRUCTURA HTML PARA TOMAR COMO REFERENCIA-->
+                <!--CIERRE DE ESTRUCTURA-->
+                <div class="wrap-proceso whiteBg" id="srcContratos">
+                </div>
+                <div id="divPagContratos" class="">
+                </div>
+
+            </div>
+            <!--END CONTAINER-->
+        </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+
+<!--RELATED INFO-->
+<section class="relatedInfo">
+    <div class="container">
+        <!--LINKS OTRAS SECCIONES-->
+        <div class="row">
+            <!--LEFT COLUMN-->
+            <div class="col-lg-8">
+                <!--LINKS seccion infografia planificacion-->
+                <h2>Otros contratistas</h2>
+                
+
+                <!--LINKS seccion infografia planificacion-->
+
+                <div class="wrap-cta py-5">
+                    <div class="wrap-cta py-5">
+                        <p class="card-title mb-4">Información suministrada por:</p>
+                        <a href="https://www.dgcp.gob.do/" target="_blank">
+                            <img class="img-fluid" src="../img/logo-dgcp.svg" alt="ir a Secretaria tecnica de planeación" />
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!--HELP CENTER SHORTCUT-->
+<div id="helpCenter"></div>
+
+<input id="contratista" name="contratista" type="hidden" value="@Model.Contratista">
+
+<script>
+    //window.onscroll = function () { myFunction() };
+
+    ////var header = document.getElementById("navs-header");
+    ////var sticky = header.offsetTop;
+
+    //function myFunction() {
+    //    //if (window.pageYOffset > sticky) {
+    //    //    header.classList.add("sticky");
+    //    //    header.classList.add("bg-white");
+    //    //} else {
+    //    //    header.classList.remove("sticky");
+    //    //    header.classList.remove("bg-white");
+    //    //}
+    //}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
+<script src="js/contratista_aux.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+

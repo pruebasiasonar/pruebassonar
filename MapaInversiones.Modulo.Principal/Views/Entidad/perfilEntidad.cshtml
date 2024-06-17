@@ -1,0 +1,481 @@
+﻿@model PlataformaTransparencia.Modelos.Entidad.ModelEntidadData
+
+@inject OrchardCore.IOrchardHelper Orchard
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var etiquetas = await Orchard.GetContentItemByHandleAsync("alias:Etiquetas");
+    var LabelDistribucionPresupuestalEntidad = "";
+    var TituloDistribucionPresupuestalEntidad = "";
+    var LabelContratosFirmadosEntidad = "";
+    var TituloContratosFirmadosEntidadEntidad = "";
+    var LabelDistPresupuesto = "";
+    var TituloDistPresupuesto = "";
+}
+@foreach (var etiqueta in etiquetas.Content.BagPart.ContentItems)
+{
+    if (@etiqueta.AliasPart.Alias == "DistribucionPresupuestalEntidad")
+    {
+        LabelDistribucionPresupuestalEntidad = @etiqueta.HtmlBodyPart.Html;
+        TituloDistribucionPresupuestalEntidad = @etiqueta.TitlePart.Title;
+    }
+
+    if (@etiqueta.AliasPart.Alias == "LabelContratosFirmadosEntidad")
+    {
+        LabelContratosFirmadosEntidad = @etiqueta.HtmlBodyPart.Html;
+        TituloContratosFirmadosEntidadEntidad = @etiqueta.TitlePart.Title;
+    }
+    if (@etiqueta.AliasPart.Alias == "DistribucionPresupuestoEntidadPerGasto")
+    {
+        LabelDistPresupuesto = @etiqueta.HtmlBodyPart.Html;
+        TituloDistPresupuesto = @etiqueta.TitlePart.Title;
+    }
+}
+<head>
+    <style>
+
+        .node rect {
+            cursor: move;
+            fill-opacity: .8;
+            shape-rendering: crispEdges;
+        }
+
+        .node text {
+            pointer-events: none;
+            /*text-shadow: 0 1px 0 #fff;*/
+        }
+
+        .link {
+            fill: none;
+            stroke: #000;
+            stroke-opacity: .1;
+        }
+
+            .link:hover {
+                stroke-opacity: .2;
+            }
+
+        .arc text {
+            font: 12px sans-serif;
+            text-anchor: middle;
+            font-weight: bold;
+        }
+
+        .arc path {
+            stroke: #fff;
+        }
+
+        .toolTip {
+            position: absolute;
+            display: none;
+            width: auto;
+            height: auto;
+            background: none repeat scroll 0 0 white;
+            border: 0 none;
+            border-radius: 8px 8px 8px 8px;
+            box-shadow: -3px 3px 15px #888888;
+            color: black;
+            font: 12px sans-serif;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!--MAIN BANNER-->
+    <section class="banner-main mb-0">
+
+        <div class="container">
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="/">Inicio</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li><a href="/BusquedaResultados">Resultados de búsqueda</a><i class="material-icons md-18">chevron_right</i></li>
+                                <li>@Model.NombreEntidad</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <input type="hidden" id="codigoEntidadId" value="@Model.CodigoEntidad" />
+                </div>
+            </nav><!-- End bread crumbs -->
+
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8">
+                    <div class="banner-main-info pb-0">
+                        <div class="banner-main-title">
+                            <h1>@Model.NombreEntidad</h1>
+                        </div>
+                        <div class="banner-main-desc">
+                            <span class="h5">Institución</span>
+                        </div>
+
+                    </div>
+
+                   
+
+                </div>
+                <!--NAVIGATION ON PAGE-->
+                
+        <div class="row navs-shortcuts">
+
+            <div class="" id="navs-header">
+
+                        <a class="btn-section" href="#presupuestoentidad">
+                    <span class="ic-shortcut"><i class="material-icons md-24">device_hub</i></span>
+                    <span class="text-btn">Presupuesto de la Institución</span>
+                </a>
+                <a class="btn-section" href="#trazabilidad">
+                    <span class="ic-shortcut"><i class="material-icons md-24">grid_view</i></span>
+                    <span class="text-btn">Trazabilidad de los recursos</span>
+                </a>
+               <!-- SE OCULTAN PROVISIONALMENTE <a class="btn-section" href="#participa">
+                    <span class="ic-shortcut"><i class="material-icons md-24">feedback</i></span>
+                    <span class="text-btn">Participación Ciudadana</span>
+                </a>
+                <a class="btn-section" href="#Shielo">
+                    <span class="ic-shortcut"><i class="material-icons md-24">live_help</i></span>
+                    <span class="text-btn">Proyectos Destacados</span>
+
+                         </a>-->
+               
+            </div>
+        </div>
+                
+                <!--FIN NAVIGATION ON PAGE-->
+            </div>
+            </div>
+
+    </section>
+    <!--PRESUPUESTO INSTITUCION-->
+    <section class="section" id="presupuestoentidad">
+        <div class="container">
+           
+            <div class="section-heading heading-left">
+                <h2>Presupuesto de la Institución</h2>
+            </div>
+            <!--SELECT AÑO-->
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <!--YEAR FILTER-->
+                    <div class="form-group">
+                        <label for="annioEntidad">Selecciona un año:</label>
+                        <select class="form-select" aria-label="Selecciona un año:" id="annioEntidad" onchange="seleccionoAnio($('#annioEntidad option:selected').val());">
+                            @if (Model.Annios.Count() > 0)
+                            {
+                                foreach (var item in Model.Annios)
+                                {
+                                    <text>
+                                    <option value="@item">@item</option>
+                                    </text>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-4 justify-content-center" id="divResumen">
+                <div class="col-lg-4 mb-3">
+                    <div class="card h-100 shadow border-0 card-entidad b1">
+                        <div class="card-body">
+                            <div class="wrap-desc-entidad">
+                                <div class="h5">Presupuesto Vigente</div>
+                                <div class="h1" id="PresupuestoVigente">RD$ @String.Format("{0:n2}", (@Model.PresupuestoVigenteAnnioDisplay / 1000000)) millones </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-3 ">
+                    <div class="card h-100 shadow border-0 card-entidad b2">
+                        <div class="card-body">
+                            <div class="wrap-desc-entidad">
+                                <div class="h5">Presupuesto Ejecutado</div>
+                                <div class="h1" id="PresupuestoEjecutado">RD$ @String.Format("{0:n2}", (@Model.PresupuestoEjecutadoAnnioDisplay / 1000000)) millones</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <div class="card h-100 shadow border-0 card-entidad b3">
+                        <div class="card-body">
+                            <div class="wrap-desc-entidad">
+                                <div class="h5">% Ejecutado</div>
+                                <div class="h1" id="PorcEjecutado">@String.Format("{0:n2}", (@Model.PorcEjecutadoAnnioDisplay))  %</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="section" id="trazabilidad">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+     @*                <div class="section-heading heading-center mb-3"> 
+                        <!--<h3>@TituloDistribucionPresupuestalEntidad</h3>
+                <div class="section-subheading">@Html.Raw(LabelDistribucionPresupuestalEntidad)</div>-->
+                    </div> *@
+                    <div class="section-heading heading-left">
+                        <h2>Trazabilidad de recursos</h2>
+                    </div>
+                    <div class="desc-heading"><p>Conoce como se están usando los fondos, ¿en qué se gasta?, ¿en qué se invierte el dinero? y controla los procesos contractuales de la institución.</p></div>
+                </div>
+
+            </div>
+            <!--TABS SUBPROGRAMAS Y PROYECTOS-->
+            <div class="tabs goals">
+                <ul id="tabTipoPrograma" class="tabs-nav">
+                    <li class="active enlace_tipo_contrato" id="analisis">
+                        <div class="goal-number"></div>
+                        <div class="goal-name"><div class="h4">Análisis institución</div></div>
+                    </li>
+                    <li id="inversion" class="enlace_tipo_contrato">
+                        <div class="goal-number"></div>
+                        <div class="goal-name"><div class="h4">Inversión</div></div>
+                    </li>
+                     <li id="procesos" class="enlace_tipo_contrato">
+                        <div class="goal-number"></div>
+                        <div class="goal-name"><div class="h4">Procesos</div></div>
+                    </li>
+                    <li id="contratos" class="enlace_tipo_contrato">
+                        <div class="goal-number"></div>
+                        <div class="goal-name"><div class="h4">Contratos</div></div>
+                    </li>
+                </ul>
+                <div id="contentTabTipoPrograma" class="tabs-container mt-5">
+                    <div class="comparativeTable" id="divAnalisis">
+
+                        <div class="container">
+                            <div class="row py-4">
+                                <div class="col-12">
+                                    <div class="">
+                                        <h3>Distribución del presupuesto</h3>
+                                        <div class="section-subheading">
+                                            <p>La distribución del presupuesto varía según las necesidades y prioridades específicas de la institución. <span class="text-bold">Haz clic en cada uno de los recuadros para conocer con mayor detalle las categorías de distribución.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="offset-1 col-md-10 col-sm-10">
+                                    <div class="pChart">
+                                        <div id="divGraphPerFuncion"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row py-4">
+                                <div class="col-12">
+                                    <div class="">
+                                        <h3>¿En que gasta la entidad?</h3>
+                                        <div class="section-subheading">
+                                            <p>Conoce las principales categorías del gasto institucional tales como Infraestructura, personal, operaciones, etc. <span class="text-bold">Posiciona el cursor sobre cada sector de la gráfica para tener información más detallada.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3">
+                                    <div class="group-expenditure" id="divTxtGrupoGasto">
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="pChart">
+                                        <div id="divGraphPerGrupoGasto" style="height:auto;width:auto;"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row py-4">
+                                <div class="col-12">
+                                    <div class="">
+                                        <h3>Modalidad de procesos adelantados por la institución</h3>
+                                        <div class="section-subheading">
+                                            <p>Las siguientes son las diferentes modalidades en las que se han adelantados procesos en la institución<span class="text-bold"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="offset-1 col-md-10 col-sm-10">
+                                    <div class="pChart">
+                                        <div id="divGraphProcesos" style="min-height:500px;min-width:80px;width:960px;">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparativeTable" id="divInversionSection">
+                        <div id="divProgramas"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="loadingAsignacion" class="asigFin" >
+                                    <h3 id="lblValorAsignacionPrograma"></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divInversion"></div>
+                        
+                    </div>
+                    <div class="comparativeTable" id="divProcesosSection">
+                        <div id="divProcesos"></div>
+                        <div id="divPagFichasPro"></div>
+                        @* <div class="card-entidades-group">
+                            <div id="institucion_0" class="card d-flex">
+                                <div class="headEnt">
+                                    <div class="data1 mainDataEntidad" style="min-width: 60% !important;max-width:60% !important;">
+                                        <span class="labelTit">
+                                            Código Proceso: <strong>COAAROM-DAF-CM-2022-0039</strong>
+                                        </span>
+                                        <span class="td1">Compra de de 3 motores vertical con brida atornillada y motor sellada para trabajar al inteperie, 5HP,3PHASE 460 VOLTIOS </span>
+                                    </div>
+                                    <div class="data1">
+                                        <span class="labelTit">Estado del Proceso</span>
+                                        <span class="td1">Proceso adjudicado y celebrado</span>
+                                    </div> <div class="data1">
+                                        <span class="labelTit">Monto Estimado</span>
+                                        <span class="td1">RD$ 2,085,000.00 </span>
+                                    </div>
+                                </div>
+                                <div class="btn-action">
+                                    <div class="btnPerfil">
+                                        <a target="_blank" href="https://comunidad.comprasdominicana.gob.do//Public/Tendering/OpportunityDetail/Index?noticeUID=DO1.NTC.1163162" class="text-small">
+                                            <i class="material-icons md-18">arrow_forward</i>
+                                            <br> <span>VER PROCESO</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> *@
+                    </div>
+                    <div class="comparativeTable" id="divListadoContratos">
+                        <div class="container">
+                            <div class="section-heading text-center">
+                                <h3>Buscador Contratos</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 col-sm-12">
+
+                                    <form class="contractList bgSoftGray">
+
+                                        <div class="form-group">
+                                            <label class="year" for="entidad">Proveedor</label>
+
+                                            <input type="search" data-results="search-home" data-search="home" id="entidad" class="search-input form-control input-lg" autocomplete="on" placeholder="Proveedor">
+
+                                            <div id="search-home" class="search-body">
+                                                <div id="divNoEncontrado" class="no-search-results" style="display: none;">No se han encontrado proveedores</div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="year" for="proceso">Palabra Clave </label>
+
+                                            <input type="search" data-results="search-home" data-search="home" id="proceso" class="search-input form-control input-lg" autocomplete="on" placeholder="Servicio, salud, nacional, etc." value="">
+
+                                        </div>
+                                        <div class="triggerForm">
+                                            <input type="button" class="btn btn-primary" value="Buscar" id="btn-buscar" disabled=""><div class="clearfix"></div>
+                                            <a class="btn btn-link text-center" id="btnLimpiar" disabled="disabled">LIMPIAR FILTROS</a>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <!--CONTRACT-LIST-->
+                                <div class="col-lg-8">
+                                    <h5 style="text-align: left"><span class="bpinfilter" id="spanfiltrado" hidden>Filtrado por BPIN</span></h5>
+                                    <!--ESTRUCTURA HTML PARA TOMAR COMO REFERENCIA-->
+                                    <!--CIERRE DE ESTRUCTURA-->
+                                    <div class="wrap-proceso whiteBg" id="srcContratos">
+                                    </div>
+                                    <div id="divPagContratos" class="">
+                                    </div>
+
+                                </div>
+                                <!--END CONTAINER-->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+
+                    
+            </div>
+        </div>
+</section>
+
+
+    <!--HELP CENTER SHORTCUT-->
+    <div id="helpCenter"></div>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3plus@2" integrity="sha384-c1J7R3OBhP9G7a0SkXCaVW1lVtOHAOuukFed365bi4B0GwZvKL2hd8mjE7tRMl2U" crossorigin="anonymous"></script>
+
+    <script src="js/entidad_aux.js"></script>
+
+    <script>
+
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("navs-header");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                header.classList.add("bg-white");
+            } else {
+                header.classList.remove("sticky");
+                header.classList.remove("bg-white");
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+        }
+
+        .bar {
+            fill: #5f89ad;
+        }
+
+        .axis {
+            font-size: 13px;
+        }
+
+            .axis path,
+            .axis line {
+                fill: none;
+                display: none;
+            }
+
+        .label {
+            font-size: 13px;
+        }
+    </style>
+</body>
+
+

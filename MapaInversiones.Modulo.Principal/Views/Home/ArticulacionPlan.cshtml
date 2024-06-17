@@ -1,0 +1,186 @@
+﻿@page
+@inject OrchardCore.IOrchardHelper Orchard
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<!--MAIN BANNER-->
+<section class="banner-main">
+
+    <div class="container">
+        <!-- Begin bread crumbs -->
+        <nav class="bread-crumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="bread-crumbs-list">
+                            <li>
+                                <a href="\">Inicio</a>
+                                <i class="material-icons md-18">chevron_right</i>
+                            </li>
+                            <li>Recursos que financian el Presupuesto General del Estado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav><!-- End bread crumbs -->
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+                <div class="banner-main-info">
+                    <div class="banner-main-title">
+                        <h2>Recursos que financian el Presupuesto General del Estado</h2>
+                    </div>
+                    @*<div class="banner-main-desc">
+                            <p></p>
+
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            
+            <!--INFO SOURCES-->
+            <div class="wrap-timeline">
+                <div class="big-text">PGE</div>
+                <div class="row news-timeline">
+                    <div class="col-xl-3 col-lg-3 col-12 news-timeline-item-left">
+                        <!-- Begin news item -->
+                        <article class="news-item item-style">
+                            <div class="news-item-info">
+                                <h3 class="news-item-heading item-heading">
+                                    Ingresos Corrientes
+                                </h3>
+                                <div class="news-item-desc">
+                                    <p>Esta clasificación comprende toda entrada proveniente de Impuestos, Seguro Educativo, Valorización y Fondos de Gestión y pagos con contraprestación o sin ella, que no provengan de donaciones de activos o de la venta de tierra, activos intangibles, existencias o activos de capital fijo.</p>
+                                </div>
+                            </div>
+                        </article><!-- End news item -->
+                        <br />
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-12 news-timeline-item-left">
+                                <!-- Begin news item -->
+                                <article class="news-item item-style">
+                                    <div class="news-item-info">
+                                        <h3 class="news-item-heading item-heading">
+                                            Ingresos del Canal
+                                        </h3>
+                                        <div class="news-item-desc">
+                                            <p>Son recursos de ingresos corrientes, provenientes de los ingresos del canal, los cuales conforman un fondo para eso específico.</p>
+                                        </div>
+                                    </div>
+                                </article><!-- End news item -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 offset-lg-6 col-12 news-timeline-item-right">
+                        <!-- Begin news item -->
+                        <article class="news-item item-style">
+                            <div class="news-item-info">
+                                <h3 class="news-item-heading item-heading">
+                                    Recursos del Patrimonio
+                                </h3>
+                                <div class="news-item-desc">
+                                    <p>Son todos los bienes nacionales existentes en el territorio de la República pertenecientes al Estado, los Municipios, Entidades Autónomas o Semiautónomas y que no sean ni individual ni colectivamente de propiedad particular (Código Fiscal, artículo 3º.). En consecuencia, en este código se clasificarán los siguientes grupos de ingresos que concurren a financiar un gasto específico: Venta de Activos, Recursos de Vigencias Anteriores, Recuperación de Préstamos, Recuperación de Colocaciones.</p>
+                                </div>
+                            </div>
+                        </article><!-- End news item -->
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-12 news-timeline-item-left">
+                        <br />
+                        <!-- Begin news item -->
+                        <article class="news-item item-style">
+                            <div class="news-item-info">
+                                <h3 class="news-item-heading item-heading">
+                                    Crédito Externo
+                                </h3>
+                                <div class="news-item-desc">
+                                    <p>Comprende la obtención de préstamos de Instituciones Financieras Internacionales, de Bancos y Consorcios Externos, de proveedores y de convenios con Gobiernos Extranjeros.</p>
+                                </div>
+                            </div>
+                        </article><!-- End news item -->
+                    </div>
+                    <div class="col-xl-3 col-lg-3 offset-lg-6 col-12 news-timeline-item-right">
+                        <!-- Begin news item -->
+                        <article class="news-item item-style">
+                            <div class="news-item-info">
+                                <h3 class="news-item-heading item-heading">
+                                    Fondo Fiduciario
+                                </h3>
+                                <div class="news-item-desc">
+                                    <p>Son recursos producto de la colocación del principal e intereses recibidos por dichas colocaciones, de acuerdo a lo señalado por la Ley 22 de 27 de junio de 2001 que modifica la Ley 20 de 1995, que determina su uso.</p>
+                                </div>
+                            </div>
+                        </article><!-- End news item -->
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-12 news-timeline-item-left">
+                        <!-- Begin news item -->
+                        <article class="news-item item-style">
+                            <div class="news-item-info">
+                                <h3 class="news-item-heading item-heading">
+                                    Crédito Interno
+                                </h3>
+                                <div class="news-item-desc">
+                                    <p>Comprende la obtención de préstamos, el uso de sobregiros, de líneas de crédito, de depósitos o fondos de terceros, así como la colocación de bonos, pagarés, notas y letras del tesoro; siempre que la operación financiera se celebre con nacionales o residentes en el territorio nacional.</p>
+                                </div>
+                            </div>
+                        </article><!-- End news item -->
+                    </div>
+                    <div class="col-xl-3 col-lg-3 offset-lg-6 col-12 news-timeline-item-right">
+                        <!-- Begin news item -->
+                        <article class="news-item item-style">
+                            <div class="news-item-info">
+                                <h3 class="news-item-heading item-heading">
+                                    Donaciones
+                                </h3>
+                                <div class="news-item-desc">
+                                    <p>Son recursos no recuperables, otorgados sin contraprestación, destinados a financiar las adquisiciones de activos de capital no financieros por los beneficiarios de la misma, a compensarlos por daños o destrucción de activos de capital, o aumentar su capital financiero. Por lo tanto, incluye cualquier tipo de donación de capital.</p>
+                                </div>
+                            </div>
+                        </article><!-- End news item -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+
+<!--CONTACT US-->
+<!--HELP CENTER SHORTCUT-->
+<div id="helpCenter"></div>
+<script src="js/comunes_infografias.js"></script>
+<script>
+    $(document).ready(function () {
+        obtListadoEntidades();
+    });
+
+
+    window.onscroll = function () { myFunction() };
+
+    var header = document.getElementById("navs-header");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+            header.classList.add("bg-white");
+        } else {
+            header.classList.remove("sticky");
+            header.classList.remove("bg-white");
+        }
+    }
+</script>
+

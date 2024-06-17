@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Emergencia\PresupuestoGeneralEmergenciaBLL.cs" />
+    <Compile Remove="Interfaces\IPresupuestoGeneralEmergenciaBLL.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Entidad\EntidadBLL.cs~RFf2caaea.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="Quartz.AspNetCore" Version="3.8.1" />
+    <PackageReference Include="SolrNet" Version="1.0.19" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MapaInversiones.Infrastructura\PlataformaTransparencia.Infrastructura.csproj" />
+    <ProjectReference Include="..\MapaInversiones.Modelos\PlataformaTransparencia.Modelos.csproj" />
+  </ItemGroup>
+
+</Project>

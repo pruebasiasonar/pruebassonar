@@ -1,0 +1,246 @@
+﻿@page
+
+@inject OrchardCore.IOrchardHelper Orchard
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var displayglosario = "";
+    var displaypreguntas = "";
+    var displaytabglosario = "";
+    var displaytabpreguntas = "";
+     if (ViewBag.tab == 2 )
+    {
+        displayglosario = "display:none"; displaytabglosario = "btn-section ";
+        displaypreguntas = "display:block"; displaytabpreguntas = "btn-section focused-btn";
+    }
+    else
+    {
+        displayglosario = "display:block"; displaytabglosario = "btn-section focused-btn";
+        displaypreguntas = "display:none"; displaytabpreguntas = "btn-section";
+    }
+
+            }
+
+<!--MAIN BANNER-->
+<section class="banner-main-asc mb-0">
+
+    <div class="container">
+        <!-- Begin bread crumbs -->
+        <nav class="bread-crumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="bread-crumbs-list">
+                            <li>
+                                <a href="/">Inicio</a>
+                                <i class="material-icons md-18">chevron_right</i>
+                            </li>
+                            <li>Centro de Ayuda</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav><!-- End bread crumbs -->
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+                <div class="banner-main-info pb-0">
+                    <div class="banner-main-title">
+                        <h1>Centro de ayuda</h1>
+                    </div>
+                    <div class="banner-main-desc">
+                        <!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, rutrum vulputate fermentum ullamcorper litora vel, suspendisse ac consequat rhoncus lectus ligula.</p>-->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<div class="subMenuGlosario">
+    <div class="container">
+        <div class="row navs-shortcuts justify-content-center m-0">
+            <div class="navHdisplay" id="navs-header">
+               
+                    <a class="@displaytabglosario" id="glosario" style="display: inline;" href="#!">
+                        Glosario
+                    </a>
+                    <a class="@displaytabpreguntas" id="preguntas" style="display: inline;" href="#!">
+                        Preguntas Frecuentes
+                    </a>
+      
+            </div>
+        </div>
+    </div>
+</div>
+<!--main content-->
+<section class="">
+    <div class="container">
+
+        <!--GLOSARIO-->
+        <div class="sect-tab glosario" id="glosario" style="@displayglosario" >
+            <div class="row">
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-8">
+                    <div class="wrap-letters">
+                        @for (char c = 'A'; c <= 'Z'; c++)
+                        {
+                            <div class="indice" id="@c">
+                                @c
+                            </div>}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @{ var glosario = await Orchard.GetContentItemByHandleAsync("alias:PalabrasGlosario"); }
+                <!--LEFT COLUMN-->
+                <div class="col-lg-2">
+                </div>
+                <!--RIGHT COLUMN-->
+                <div class="col-lg-8">
+                    @foreach (var palabra in glosario.Content.BagPart.ContentItems)
+                    {
+        string p = @palabra.DisplayText.ToString().Substring(0, 1);
+                        <div class="palabra @p" id="">
+                            <br />
+                            <span class="h4">
+                                <strong>@palabra.DisplayText</strong>
+                            </span>
+                            <div>@Html.Raw(palabra.HtmlBodyPart.Html)</div>
+
+                        </div>}
+
+
+                </div>
+            </div>
+        </div>
+
+        <!--FAQ-->
+        <div class="sect-tab preguntas" id="preguntas" style="@displaypreguntas">
+            <div class="row">
+                @{ var preguntas = await Orchard.GetContentItemByHandleAsync("alias:Preguntas");
+        List<string> categorias = new List<string>(); }
+                <!--LEFT COLUMN-->
+                <div class="col-lg-3">
+                    @foreach (var pregunta in preguntas.Content.BagPart.ContentItems)
+                    {
+        @foreach (var termId in pregunta.Pregunta.Categoria.TermContentItemIds)
+                        {
+            string term = termId + "";
+            string taxonomy = pregunta.Pregunta.Categoria.TaxonomyContentItemId + "";
+            var display = await Orchard.GetTaxonomyTermAsync(taxonomy, term);
+            if (!categorias.Contains(term))
+            {
+                categorias.Add(term);
+                                <div class="categoriapregunta" id="@term">
+                                    <span class="h5">@display</span>
+                                </div>}
+                        }}
+                </div>
+                <!--RIGHT COLUMN-->
+                <div class="col-lg-8">
+
+
+                    @foreach (var pregunta in preguntas.Content.BagPart.ContentItems)
+                    {
+        @foreach (var termId in pregunta.Pregunta.Categoria.TermContentItemIds)
+                        {
+            string term = termId + "";
+            string taxonomy = pregunta.Pregunta.Categoria.TaxonomyContentItemId + "";
+            var display = await Orchard.GetTaxonomyTermAsync(taxonomy, term);
+
+                            <div class="pregunta @term">
+                                <span class="h4"><strong>
+                                        @pregunta.DisplayText
+                                    </strong>
+                                </span>
+                                <div>@Html.Raw(pregunta.HtmlBodyPart.Html)</div>
+                            </div>}}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<script type="text/javascript" src="../../js/centroayuda_aux.js"></script>*@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+      var enlacePregunta = document.getElementById("preguntas");
+      if (enlacePregunta.style.display != "none") {
+        //Muestra las preguntas de la primera categoria
+        var c = document.getElementsByClassName("categoriapregunta");
+        id = "pregunta " + c[0].id;
+          Mostrar("pregunta", id)
+          var p = document.getElementById(c[0].id);
+          p.className = "categoriapregunta focused-cat"
+        //Muestra las palabras del glosario de la primera letra
+          Mostrar("palabra", "palabra A")
+          var g = document.getElementById('A');
+          g.className = "indice focused-glo"
+      }
+      else {
+          Mostrar("sect-tab", "sect-tab contacto");
+          
+      }
+       $('.section-question').hide();
+        
+
+    });
+
+    $(document).on('click', '.categoriapregunta', function (e) {
+        id = "pregunta " + this.id;
+        Mostrar('pregunta', id);
+        var y = document.getElementsByClassName('categoriapregunta');
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].className = "categoriapregunta";
+        }
+        this.className = "categoriapregunta focused-cat"
+    });
+
+    $(document).on('click', '.btn-section', function (e) {
+        id = "sect-tab " + this.id;
+        Mostrar('sect-tab', id);
+        var y = document.getElementsByClassName('btn-section');
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].className = "btn-section";
+        }
+        this.className = "btn-section focused-btn"
+    });
+
+
+    $(document).on('click', '.indice', function (e) {
+        id = "palabra " + this.id;
+        Mostrar('palabra', id);
+        var y = document.getElementsByClassName('indice');
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].className = "indice";
+        }
+        this.className = "indice focused-glo"
+    });
+  function Mostrar(ocultar, mostrar) {
+    console.log("Ocultar:" + ocultar);
+    console.log("Mostrar:" + mostrar);
+        var y = document.getElementsByClassName(ocultar);
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].style.display = "none";
+        }
+        var x = document.getElementsByClassName(mostrar);
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "block";
+        }
+    }
+</script>
