@@ -138,27 +138,13 @@ namespace PlataformaTransparencia.Modulo.Principal.Controllers
             return View();
         }
 
-        public ActionResult PlanODS()
-        {
-            return View();
-        }
-
         public ActionResult PresupuestoResultados()
-        {
-            return View();
-        }
-
-        public ActionResult DesarrolloSostenible()
         {
             return View();
         }
 
         public ActionResult POI()
         {
-            return View();
-        }
-
-        public ActionResult PND() {
             return View();
         }
 
@@ -171,24 +157,10 @@ namespace PlataformaTransparencia.Modulo.Principal.Controllers
             return View();
         }
 
-        public ActionResult PDT()
-        {
-            return View();
-        }
-
         public ActionResult ProcesoCiclo()
         {
             return View();
         }
 
-        public ActionResult ProcesoGastos()
-        {
-            return View();
-        }
-
-        public ActionResult ProcesoIngresos()
-        {
-            return View();
-        }
     }
 }
