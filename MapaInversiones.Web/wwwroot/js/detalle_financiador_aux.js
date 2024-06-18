@@ -295,7 +295,6 @@ function generarDivTablaDeProyectos() {
 function generarDivTablaProyectosPorPagina(proyectosPorPagina) {
     var divListadoProyectos = ''; 
     proyectosPorPagina.forEach(x => { divListadoProyectos = divListadoProyectos + generarDivProyecto(x); });
-    divListadoProyectos = divListadoProyectos; 
     $("#table_proyectos_financiador_annio").html(divListadoProyectos);
 }
 function generarDivProyecto(proyecto) {
