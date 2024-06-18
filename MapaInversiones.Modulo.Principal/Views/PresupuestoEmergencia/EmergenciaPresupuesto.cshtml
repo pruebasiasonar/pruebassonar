@@ -11,7 +11,7 @@
 
     .node text {
         pointer-events: none;
-        /*text-shadow: 0 1px 0 #fff;*/
+
     }
 
     .link {
@@ -618,10 +618,7 @@
                                                         <span class="labelTit">&nbsp;</span>
                                                         <span class="td1">Totales</span>
                                                     </div>
-                                                    @*<div class="data1">
-                                                <span class="labelTit">Presupuesto</span>
-                                                <span class="td1">₲ @String.Format("{0:n0}", @total_presupuesto / 1000000) Millones</span>
-                                                </div>*@
+
                                                     <div class="data1">
                                                         <span class="labelTit">Gastos devengados</span>
                                                         <span class="td1">RD $ @String.Format("{0:n0}", @total_avance / 1000000) Millones</span>
@@ -638,8 +635,7 @@
                                 </div>
 
                             </div>
-                            
-                            @* <div style="width:100%; height:419px!important; display:block;" id="divGraphRecursosObj"></div> *@
+ 
                         </div>
                     </div>
                     <div class="row">
@@ -669,10 +665,7 @@
                     <div class="banner-main-desc">
                         <p>Explora los detalles y el estado de los contratos asociados a la atención de la emergencia @Model.NombreEmergencia </p>
                     </div>
-                    @* <div class="grafica-container">
-                        <div style="width:100%; height:419px!important; display:block;" id="divGraphRecursosArticulos"></div>
-                    </div> *@
-                    
+
                 </div>
             </div>
             <div class="row">
@@ -732,7 +725,7 @@
                         <div class="card-footer">
                             <div class="text-center">
                                 <a class="btn btn-outlined" href="https://saip.gob.do/apps/sip/?step=one" target="_blank" rel="noopener"> Solicitar <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                                <!--id="divEnlaceSolicita"-->
+                               
                             </div>
                         </div>
                     </div>
@@ -741,15 +734,13 @@
             </div>
 
         </div>
-        @*<div>
-        @Html.Partial("DatosAbiertos");
-        </div>*@
+
     </section>
 
 
     <!--DATOS ABIERTOS-->
-    <!--DATOS ABIERTOS, new ViewDataDictionary { { "id", "emergencia" } }-->
-    @*<input type="hidden" id="param" value="presupuestoFiona" />*@
+
+
     @{
         var parame = "emergencia" + @Model.TipoEmergencia;
     }
@@ -785,8 +776,8 @@
             }
         </text>
     }
-        </div>
-    </section>-->
+     
+
 
 </body>
 

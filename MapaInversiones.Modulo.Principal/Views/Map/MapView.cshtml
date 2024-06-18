@@ -475,18 +475,6 @@
 
                             <div class="main-content__description home-description-aplication">
 
-                                @*<div class="centered">
-
-                                    <div class="video-area">
-                                        <h2 class="main-content__description__text-bold">Conoce que es Mapa Regalías</h2>
-                                        <figure class="get-video-regalias"></figure>
-                                        <p class="main-content__description__text">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_Label_lblTitulo2")</p>
-
-                                    </div><!-- video area -->
-
-                                </div><!-- centered -->*@
-
-
 
                             </div><!-- end home-description-aplication -->
 
@@ -571,10 +559,7 @@
     <script type="html/x-handlebars" id="template-infobox-project">
         <div class="bingmap-infobox-info bingmap-infobox-project">
             <h3 class="title">{{=it.name}}</h3>
-@*            {{?it.image}}
-            <img src="{{=it.image}}" alt="{{=it.name}}">
-            {{?}}
-*@            <p class="number">{{=it.value.toCurrency()}}</p>
+            <p class="number">{{=it.value.toCurrency()}}</p>
             <p class="label">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_InfoboxUnProyecto_lblValor")</p>
             <p class="number">{{=it.state}}</p>
             <p class="label">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_InfoboxUnProyecto_lblEstado")</p>

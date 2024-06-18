@@ -1,15 +1,10 @@
 ﻿@model PlataformaTransparencia.Modelos.ModelPresupuestoEmergenciaData
 
 @{
-    //Layout = "~/Views/Shared/_LayoutEmergencias.cshtml";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.SectionId = "section-contratosCovid";
 }
-@*@{
-        ViewBag.Title = "MapaInversiones + Módulo COVID-19 República Dominicana";
-        ViewBag.SectionId = "section-homecovid";
-        Layout = "~/Views/Shared/_LayoutEmergencias.cshtml";
-    }*@
 
 <!-- Bootstrap Core CSS -->
 <link href="~/content/bootstrap.min.css" rel="stylesheet">
@@ -79,19 +74,9 @@
                 <!-- intro map-->
                 <div class="col-md-8 col-md-offset-2">
                     <h1 class="mainTit_t1 text-center" id="nomLocation">
-                        @*@if (@Model.nombreUnidadCompra != null)
-                            {
-                                <text>
-                                    @Model.nombreUnidadCompra
-                                </text>
-                            }
-                            else
-                            {
-                                <text>*@
-                        Ejecución para atender emergencia @Model.NombreEmergencia
-                        @*</text>
 
-                            }*@
+                        Ejecución para atender emergencia @Model.NombreEmergencia
+
 
                     </h1>
 
@@ -100,29 +85,7 @@
                     </div>
                 </div>
 
-                @*<div class="col-md-8 col-md-offset-2">
-                        <div class="col-md-3">
-                            @if (Model.numContratosActivos > 0)
-                            {
-                                <span class="h3"> @Model.numContratosActivos </span>
-                            }
-                            <span>Procesos</span>
-
-                        </div>
-                        <div class="col-md-3">
-                            @if (Model.numContratosActivos > 0)
-                            {
-                                <span class="h3"> @Model.numContratosActivos </span>
-                            }
-                            <span>Contratos</span>
-
-                        </div>
-                        <div class="col-md-3">
-                            <span class="h3"> RD$ @String.Format("{0:n0}", @Model.valContratosActivos / 1000000) Millones</span>
-                            <span>Valor total de los contratos</span>
-
-                        </div>
-                    </div>*@
+             
             </div>
 
         </div>
@@ -132,7 +95,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="headTit">
-                        <!--<img src="/content/img/covid/icchart.svg">--> <h2>Distribución de la ejecución de gastos</h2>
+                       <h2>Distribución de la ejecución de gastos</h2>
                         <div class="clearfix"></div>
                         <p class="text-center">Explora la distribución de las fuentes internas y externas de los recursos, destinados a cubrir la emergencia @Model.NombreEmergencia </p>
                     </div>
@@ -181,18 +144,12 @@
                                                                 <span class="labelTit">Institución</span>
                                                                 <span class="td1"> @item.NomItem</span>
                                                             </div>
-                                                            @*<div class="data1">
-                                                                    <span class="labelTit">Presupuestado</span>
-                                                                    <span class="td1">RD $ @String.Format("{0:n2}", @item.total_presupuesto / 1000000) Millones</span>
-                                                                </div>*@
+
                                                             <div class="data1">
                                                                 <span class="labelTit">Ejecutado</span>
                                                                 <span class="td1">RD $ @String.Format("{0:n2}", @item.total_avance / 1000000) Millones</span>
                                                             </div>
-                                                            @*<div class="data1">
-                                                                    <span class="labelTit">Cumplimiento</span>
-                                                                    <span class="td1">@String.Format("{0:n2}", @item.porcentajeCumplimiento) %</span>
-                                                                </div>*@
+
                                                         </div>
                                                     </a>
                                                 </div>
@@ -215,18 +172,12 @@
                                                                                     <span class="labelTit">Unidad ejecutora</span>
                                                                                     <span class="td1p">@ent.NomCapitulo</span>
                                                                                 </div>
-                                                                                @*<div class="data2">
-                                                                                        <span class="labelTit">Presupuestado</span>
-                                                                                        <span class="td1p">RD $ @String.Format("{0:n2}", @ent.presupuesto / 1000000) Millones</span>
-                                                                                    </div>*@
+
                                                                                 <div class="data2">
                                                                                     <span class="labelTit">Ejecutado</span>
                                                                                     <span class="td1p">RD $ @String.Format("{0:n2}", @ent.avance / 1000000) Millones</span>
                                                                                 </div>
-                                                                                @*<div class="data2">
-                                                                                        <span class="labelTit">Cumplimiento</span>
-                                                                                        <span class="td1">@String.Format("{0:n2}", @ent.porcentajeCumplimiento) %</span>
-                                                                                    </div>*@
+
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -247,18 +198,12 @@
                                                                                                         <span class="labelTit">Cuenta</span>
                                                                                                         <span class="td1p">@act.NomConcepto</span>
                                                                                                     </div>
-                                                                                                    @*<div class="data2">
-                                                                                                            <span class="labelTit">Presupuestado</span>
-                                                                                                            <span class="td1p">RD$ @String.Format("{0:n2}", @act.presupuesto / 1000000) Millones</span>
-                                                                                                        </div>*@
+
                                                                                                     <div class="data2">
                                                                                                         <span class="labelTit">Ejecutado</span>
                                                                                                         <span class="td1p">RD$ @String.Format("{0:n2}", @act.avance / 1000000) Millones</span>
                                                                                                     </div>
-                                                                                                    @*<div class="data2">
-                                                                                                            <span class="labelTit">Cumplimiento</span>
-                                                                                                            <span class="td1p">@String.Format("{0:n2}", @act.porcentajeCumplimiento) %</span>
-                                                                                                        </div>*@
+
                                                                                                 </div>
                                                                                             </a>
                                                                                         </div>
@@ -287,18 +232,12 @@
                                                 <span class="labelTit">&nbsp;</span>
                                                 <span class="td1">Totales</span>
                                             </div>
-                                            @*<div class="data2">
-                                                    <span class="labelTit">Presupuestado</span>
-                                                    <span class="td1">RD $ @String.Format("{0:n0}", @total_presupuesto / 1000000) Millones</span>
-                                                </div>*@
+
                                             <div class="data2">
                                                 <span class="labelTit">Ejecutado</span>
                                                 <span class="td1">RD $ @String.Format("{0:n0}", @total_avance / 1000000) Millones</span>
                                             </div>
-                                            @*<div class="data2">
-                                                    <span class="labelTit">Cumplimiento</span>
-                                                    <span class="td1">@String.Format("{0:n2}", @total_avance * 100 / @total_presupuesto)%</span>
-                                                </div>*@
+
                                         </div>
 
                                     </div>
@@ -335,18 +274,12 @@
                                                                 <span class="labelTit">Institución</span>
                                                                 <span class="td1"> @item.NomItem</span>
                                                             </div>
-                                                            @*<div class="data2">
-                                                                    <span class="labelTit">Presupuestado</span>
-                                                                    <span class="td1">RD $ @String.Format("{0:n2}", @item.total_presupuesto / 1000000) Millones</span>
-                                                                </div>*@
+
                                                             <div class="data2">
                                                                 <span class="labelTit">Ejecutado</span>
                                                                 <span class="td1">RD $ @String.Format("{0:n2}", @item.total_avance / 1000000) Millones</span>
                                                             </div>
-                                                            @*<div class="data2">
-                                                                    <span class="labelTit">Cumplimiento</span>
-                                                                    <span class="td1">@String.Format("{0:n2}", @item.porcentajeCumplimiento) %</span>
-                                                                </div>*@
+
                                                         </div>
                                                     </a>
                                                 </div>
@@ -359,7 +292,6 @@
                                                         var headNivel2 = "headLevel2_" + i.ToString() + "_" + j.ToString();
                                                         var panelHijo2 = "c2_" + j.ToString() + "_" + k.ToString();
                                                         var nomHeadLevel3 = "headLevel3_" + j.ToString() + "_" + k.ToString();
-                                                        //var val_nivel2 = @ent.avance / 1000000;
                                                         <div class="panel-group nivel22" id="@nomNivel2" role="tablist" aria-multiselectable="true">
                                                             <div class="panel panel-default">
                                                                 <div class="panel-heading" role="tab" id="@headNivel2">
@@ -370,18 +302,12 @@
                                                                                     <span class="labelTit">Unidad ejecutora</span>
                                                                                     <span class="td1p">@ent.NomCapitulo</span>
                                                                                 </div>
-                                                                                @*<div class="data2">
-                                                                                        <span class="labelTit">Presupuestado</span>
-                                                                                        <span class="td1p">RD $ @String.Format("{0:n2}", @ent.presupuesto / 1000000) Millones</span>
-                                                                                    </div>*@
+
                                                                                 <div class="data2">
                                                                                     <span class="labelTit">Ejecutado</span>
                                                                                     <span class="td1p">RD $ @String.Format("{0:n2}", @ent.avance / 1000000) Millones</span>
                                                                                 </div>
-                                                                                @*<div class="data2">
-                                                                                        <span class="labelTit">Cumplimiento</span>
-                                                                                        <span class="td1">@String.Format("{0:n2}", @ent.porcentajeCumplimiento) %</span>
-                                                                                    </div>*@
+
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -402,18 +328,12 @@
                                                                                                         <span class="labelTit">Cuenta</span>
                                                                                                         <span class="td1p">@act.NomConcepto</span>
                                                                                                     </div>
-                                                                                                    @*<div class="data2">
-                                                                                                            <span class="labelTit">Presupuestado</span>
-                                                                                                            <span class="td1p">RD$ @String.Format("{0:n2}", @act.presupuesto / 1000000) Millones</span>
-                                                                                                        </div>*@
+
                                                                                                     <div class="data2">
                                                                                                         <span class="labelTit">Ejecutado</span>
                                                                                                         <span class="td1p">RD$ @String.Format("{0:n2}", @act.avance / 1000000) Millones</span>
                                                                                                     </div>
-                                                                                                    @*<div class="data2">
-                                                                                                            <span class="labelTit">Cumplimiento</span>
-                                                                                                            <span class="td1p">@String.Format("{0:n2}", @act.porcentajeCumplimiento) %</span>
-                                                                                                        </div>*@
+
                                                                                                 </div>
                                                                                             </a>
                                                                                         </div>
@@ -442,18 +362,12 @@
                                                 <span class="labelTit">&nbsp;</span>
                                                 <span class="td1">Totales</span>
                                             </div>
-                                            @*<div class="data2">
-                                                    <span class="labelTit">Presupuestado</span>
-                                                    <span class="td1">RD $ @String.Format("{0:n0}", @total_presupuesto / 1000000) Millones</span>
-                                                </div>*@
+
                                             <div class="data2">
                                                 <span class="labelTit">Ejecutado</span>
                                                 <span class="td1">RD $ @String.Format("{0:n0}", @total_avance / 1000000) Millones</span>
                                             </div>
-                                            @*<div class="data2">
-                                                    <span class="labelTit">Cumplimiento</span>
-                                                    <span class="td1">@String.Format("{0:n2}", @total_avance * 100 / @total_presupuesto)%</span>
-                                                </div>*@
+
                                         </div>
 
                                     </div>
@@ -481,7 +395,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="headTit">
-                        <!--<img src="~/content/img/covid/icchart.svg" />--> <h2>Organismo Financiador</h2>
+                         <h2>Organismo Financiador</h2>
                         <div class="clearfix"></div>
                         <p class="text-center">Explora la distribución de las fuentes internas y externas de los recursos, destinados a cubrir la emergencia @Model.NombreEmergencia </p>
                     </div>
@@ -721,10 +635,7 @@
                                                         <span class="labelTit">&nbsp;</span>
                                                         <span class="td1">Totales</span>
                                                     </div>
-                                                    @*<div class="data1">
-                                                        <span class="labelTit">Presupuesto</span>
-                                                        <span class="td1">₲ @String.Format("{0:n0}", @total_presupuesto / 1000000) Millones</span>
-                                                        </div>*@
+
                                                     <div class="data1">
                                                         <span class="labelTit">Gastos devengados</span>
                                                         <span class="td1">RD $ @String.Format("{0:n0}", @total_avance / 1000000) Millones</span>
@@ -744,14 +655,7 @@
                             <div style="width:100%; height:419px!important; display:block;" id="divGraphRecursosObj"></div>
                         </div>
                     </div>
-                    <!--<div class="row">
-                                <div class="col-md-12">
-                                    <div class="text-center">
-                                        Fecha de corte @Model.FechaActualizacionHacienda<br>
-                    La información presentada en el módulo COVID-19 es preliminar, por lo que puede sufrir modificaciones en relación a los valores presentados hasta que no se haga un cierre definitivo sobre el estado de emergencia.
-                                    </div>
-                                </div>
-                        </div>-->
+
                 </div>
 
 
@@ -779,15 +683,6 @@
                 </div>
             </div>
 
-            <!--<div class="row">
-                <div class="text-center m-tb-25">
-                    <a class="btn btn-primary btn-lg" href="/contratista/contratoscovid" target="_self">
-                        Explorar Contratos
-                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
-                    </a>
-                </div>
-
-            </div>-->
         </div>
 
     </section>
@@ -850,15 +745,12 @@
             </div>
 
         </div>
-        @*<div>
-                @Html.Partial("DatosAbiertos");
-            </div>*@
+
     </section>
 
 
     <!--DATOS ABIERTOS-->
-    <!--DATOS ABIERTOS, new ViewDataDictionary { { "id", "emergencia" } }-->
-    @*<input type="hidden" id="param" value="presupuestoFiona" />*@
+
     @{
         var parame = "emergencia" + @Model.TipoEmergencia;
     }
@@ -883,12 +775,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="box-opendata">
-                        <!--<div class="icon-box-opendata"><img src="~/content/img/covid/ic_openData.png" alt="icono contratos y procesos open data" /></div>-->
                         <div class="row">
                             <!--OPENDATA PROYECTOS-->
                             <div class="col-md-4 col-md-offset-4">
                                 <div class="rowBox">
-                                    <!--<div class="tit-box-opendata"><span class="h5">Proyectos</span></div>-->
 
                                     <div class="action-bar">
                                         <div class="btnDownloadSection">
@@ -899,7 +789,6 @@
                                     </div>
                                     <div class="info-data">
                                         <div class="t1">Fuente: <span id="btnFuente"></span></div>
-                                        @*<div class="t1">Última actualización:<span> @Model.FechaActualizacionContratos </span></div> Sistema Nacional de Inversión Pública,&nbsp;Ministerio de Economía, Planificación y Desarrollo*@
                                     </div>
                                 </div>
                             </div>
@@ -913,11 +802,7 @@
 
     <div class="clearfix"></div>
 
-    <!--<section class="section-dataFuente">
-        <div class="container">
-            @*<h3>Fuentes de Datos</h3>*@
 
-            @*<h3 style="min-height: 0px;">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_FuentesDatos_TituloPrincipal")</h3>*@
             @if (ViewBag.dataSource != null)
             {<text>
 
@@ -928,23 +813,19 @@
                                 <h6 class="text-center">@source.data</h6>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        @*<span class="t1">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_FuentesDatos_Fuente") </span>*@
                                         <span>@source.source</span>
                                     </div>
                                     <div class="col-md-6 col-xs-6 border-right">
-                                        @*<span class="t1">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_FuentesDatos_lblFechaData") </span>*@
                                         <span>@source.lastUpdate.ToShortDateString()</span>
                                     </div>
                                     <div class="col-md-6 col-xs-6">
-                                        @*<span class="t1">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_FuentesDatos_lblFechaCorteData") </span>*@
                                         <span>@source.FechaCorteData.ToShortDateString()</span>
                                     </div>
                                 </div>
                             </div>
                     </text>}
             </text>}
-        </div>
-    </section>-->
+
 
 </body>
 
@@ -954,13 +835,13 @@
     <script src="~/Scripts/jquery.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootbox.js"></script>
-    @*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
+
 
 
     <script src="~/Content/dist/js/lib/D3/d3.min.js" charset="utf-8"></script>
     <script src="~/content/dist/js/lib/D3/d3plus.full.js"></script>
     <script src="~/content/dist/js/sankey.js"></script>
-    @*<script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>*@
+
 
 
     <!-- Scrolling Nav JavaScript -->
@@ -971,19 +852,11 @@
     <script type="text/javascript">
         var jqueryObj = $;
 
-        //jqueryObj("#enlacelistado_og").on("click", function () {
-        //    //alert("Hice clic en tab");
-        //    jqueryObj("#divListadoRecursosObje").attr("class", "");
-        //    //setTimeout(function () {
-        //    //    if (!jqueryObj(".popover:hover").length) {
-        //    //        jqueryObj("#toolActivos").popover("hide");
-        //    //    }
-        //    //}, 300);
-        //});
+
 
         htmlpop = '<div class="tooltipdiv">';
         htmlpop += '<div class="tooltipdiv-head"></div>';
-        //htmlpop += '<div class="tooltipdiv-body">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_Tooltips_ContratosActivos")</div>';
+        htmlpop += '<div class="tooltipdiv-body"></div>';
         htmlpop += '</div>';
         jqueryObj("#toolActivos").attr("data-content", htmlpop);
         // LLamado al tooltip personalizado, el html del contenido debe ir en la propiedad data-content de la etiqueta que se use como trigger del tooltip
@@ -1006,7 +879,7 @@
 
         htmlpop = '<div class="tooltipdiv">';
         htmlpop += '<div class="tooltipdiv-head"></div>';
-        //htmlpop += '<div class="tooltipdiv-body">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_Tooltips_ContratosCancelados")</div>';
+        htmlpop += '<div class="tooltipdiv-body"></div>';
         htmlpop += '</div>';
         jqueryObj("#toolCancelados").attr("data-content", htmlpop);
         // LLamado al tooltip personalizado, el html del contenido debe ir en la propiedad data-content de la etiqueta que se use como trigger del tooltip
@@ -1029,7 +902,7 @@
 
         htmlpop = '<div class="tooltipdiv">';
         htmlpop += '<div class="tooltipdiv-head"></div>';
-        //htmlpop += '<div class="tooltipdiv-body">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_Tooltips_ContratosPendientes")</div>';
+        htmlpop += '<div class="tooltipdiv-body"</div>';
         htmlpop += '</div>';
         jqueryObj("#toolPendientes").attr("data-content", htmlpop);
         // LLamado al tooltip personalizado, el html del contenido debe ir en la propiedad data-content de la etiqueta que se use como trigger del tooltip
@@ -1052,7 +925,7 @@
 
         htmlpop = '<div class="tooltipdiv">';
         htmlpop += '<div class="tooltipdiv-head"></div>';
-        //htmlpop += '<div class="tooltipdiv-body">@ViewBag.TitulosHome.BuscarTituloPorLlave("Home_Tooltips_ContratosTerminados")</div>';
+        htmlpop += '<div class="tooltipdiv-body"></div>';
         htmlpop += '</div>';
         jqueryObj("#toolTerminados").attr("data-content", htmlpop);
         // LLamado al tooltip personalizado, el html del contenido debe ir en la propiedad data-content de la etiqueta que se use como trigger del tooltip
@@ -1077,9 +950,7 @@
     <script src="~/Content/dist/js/app/search/search.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    @*<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&amp;mkt=es-es"></script>*@
     <script type="text/javascript" src="@Url.Content("~/Content/dist/js/libs.min.js")" data-main="@Url.Content("~/Content/dist/js/mainCovid.js")"></script>
-    @*<script src="~/content/dist/js/datosInicioCovid.js"></script>*@
     <script src="~/content/dist/js/cifrascovid_aux.js"></script>
 
     <script src="~/Content/dist/js/emergencia_presupuesto_aux.js"></script>
@@ -1162,7 +1033,6 @@
         });
 
         $(document).on('click', '.btn-select', function (e) {
-            //e.preventDefault();
             var ul = $(this).find("ul");
 
             if ($(this).hasClass("active")) {
@@ -1194,10 +1064,8 @@
 
 
     </script>
-    @*<script src="~/content/dist/js/home_aux.js"></script>*@
 
 
-    @*<script type='text/javascript' src='//www.bing.com/api/maps/mapcontrol?callback=loadMap' async defer></script>*@
 
 }
 
