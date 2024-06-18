@@ -672,7 +672,7 @@ function configuraSelectProgramas() {
             setValoresXPrograma(filter_prog);
         }
 
-        consultaInfograficoPerPrograma(prog_actual, true);
+        consultaInfograficoPerPrograma(prog_actual);
     });
 
 }

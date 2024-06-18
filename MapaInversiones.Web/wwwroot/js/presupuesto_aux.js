@@ -386,7 +386,7 @@ function ObtenerSectoresPeriodo(anyo_actual) {
                 $("#filter_sector_sankey").html(cad_sector);
                 configuraSelectSectorSankey();
                 if (global_tab == "sector" || global_tab=="") {
-                    getSectoresXFuenteIni(anyo_actual);
+                    getSectoresXFuenteIni();
                 }
 
 
