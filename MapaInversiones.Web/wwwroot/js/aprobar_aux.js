@@ -31,7 +31,7 @@ var loader_proy = "<div class=\"MIVloader\">&nbsp;</div>";
             $("#hdIdUsuario").val(projectPerfil[0].idUsuParticipa);
             $("#hdNomUsuario").val(projectPerfil[0].nomUsuParticipa);
             if ($("#hdIdUsuario").val() != "") {
-                validaSesionUsu($("#hdIdUsuario").val());
+                validaSesionUsu();
             } else {
                 $("#divNomUsuarioLog").text("");
                 $("#hdNomUsuario").val("");
@@ -327,8 +327,10 @@ var loader_proy = "<div class=\"MIVloader\">&nbsp;</div>";
             if (!Array.isArray(_arr1) || !Array.isArray(_arr2) || _arr1.length !== _arr2.length)
                 return false;
 
-            var arr1 = _arr1.concat().sort();
-            var arr2 = _arr2.concat().sort();
+            var arr1 = _arr1.concat().sort((a, b) => isFinite(a[0]) - isFinite(b[0])
+                || a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+            var arr2 = _arr2.concat().sort((a, b) => isFinite(a[0]) - isFinite(b[0])
+                || a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
             for (var i = 0; i < arr1.length; i++) {
 

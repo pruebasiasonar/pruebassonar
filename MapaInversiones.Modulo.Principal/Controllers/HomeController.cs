@@ -138,25 +138,6 @@ namespace PlataformaTransparencia.Modulo.Principal.Controllers
             return View();
         }
 
-        public ActionResult PresupuestoResultados()
-        {
-            return View();
-        }
-
-        public ActionResult POI()
-        {
-            return View();
-        }
-
-        public ActionResult Plansectorial()
-        {
-            return View();
-        }
-        public ActionResult PEI()
-        {
-            return View();
-        }
-
         public ActionResult ProcesoCiclo()
         {
             return View();
