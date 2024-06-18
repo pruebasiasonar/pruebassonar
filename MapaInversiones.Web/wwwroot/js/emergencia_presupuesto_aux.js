@@ -1,5 +1,4 @@
 ﻿var anyo = (new Date).getFullYear() - 1;
-//var loader_proy = "<div class=\"MIVloader\">&nbsp;</div>";
 var recursosPerObjetoAvanceGroup = JSON.parse(document.body.getAttribute('data-recursosPerObjetoAvanceGroup'));
 var objPerContratos = JSON.parse(document.body.getAttribute('data-resourcesPerContratos'));
 var tipoEmergencia = JSON.parse(document.body.getAttribute('data-tipoEmergencia'));
@@ -166,7 +165,7 @@ function configEnlaceOtros() {
     $(".enlace_prog").on('click', function () {
         $('#accordion .collapse').removeClass("in");
         $("#enlacelistado_og").trigger("click");
-        //$("#divListadoRecursosObje").show();
+
         $("#migapanlistado").val("");
 
         var tipo_enlace = $(this).attr("tipo")
@@ -201,7 +200,7 @@ function obtRutaEnlace(filtro, idSubsidio) {
             break;
         case "FASE TURISMO":
             rutaficha = "../Covid/PerfilSubsidio/?subsidio=" + idSubsidio;
-            //rutaficha = "https://programas-beneficios.hacienda.gob.do/principal";
+
             break;
         default:
             rutaficha = "";
@@ -253,7 +252,7 @@ function configuraFiltro_DesgloseIconos() {
             $(".boxCompoDesglose").hide();
             $(".boxTituloListado").show();
             $("#sankey_basic").empty();
-            //seleccionar tab abierto
+
             var lstNiveles = $("#migapanlistado").val();
             var arrayNiv = lstNiveles.split(",");
             var nom_nivel = "";
@@ -331,7 +330,7 @@ function configuraFiltro_DesgloseIconos() {
             $("#divGraphRecursosObj").hide();
             $("#divListadoRecursosObje").hide();
             $("#divGraphRecursosObj").children().remove();
-            //$(".boxCompoDesglose").show();
+
             $(".boxTituloListado").hide();
             $("#sankey_basic").empty();
             ObtenerDatosArticulo(tipoEmergencia);
@@ -352,7 +351,7 @@ function configuraFiltro_DesgloseIconos() {
             $("#divListadoRecursosObjeEnte").hide();
             $("#divListadoRecursosObjeEnteNoCentral").show();
             $("#divListadoRecursosObje").hide();
-            //$("#divListadoRecursosObjeEnte").empty();
+
         }
 
     });
@@ -373,9 +372,7 @@ function configuraFiltro_Donaciones() {
 
 }
 function ObtenerDatosArticulo(tipoEmergencia) {
-    //var params_com = {
-    //    tipoEmergencia: tipoEmergencia
-    //};
+
     $.ajax({
         type: 'GET',
         contentType: "application/json; charset=utf-8",
@@ -383,7 +380,7 @@ function ObtenerDatosArticulo(tipoEmergencia) {
         data: {
             typeEmergencyId: tipoEmergencia
         },
-       //JSON.stringify({ data: tipoEmergencia }),
+
         url: "/api/ServiciosCovid/ObtDistribucionPresupuestalEjecutadoPorTipoEmergencia/",// + tipoEmergencia,
         cache: false,
         success: function (result) {
@@ -644,7 +641,7 @@ function numberWithCommas(x) {
     return parts.join(".");
 }
 function getContratosRP() {
-    //alert(ruc + '      ' + nombreContratista);
+
     $.ajax({
         type: 'POST',
         contentType: "application/json; charset=utf-8",
@@ -653,8 +650,7 @@ function getContratosRP() {
         cache: false,
         success: function (result) {
             if (result.status == true) {
-                // $("#cantidadRP").html("");
-                //alert(result.valorContratos);
+
                 if (result.numContratos > 0) {
                     $("#cantidadRP").html("&nbsp;&nbsp;&nbsp;" + result.numContratos);
                     $("#totalRP").html("RD $ " + formatMoney(parseFloat(result.valorContratos / 1000000),0, ".", ",") + tituloMillones(parseFloat(result.valorContratos / 1000000).toFixed(0)));
@@ -695,9 +691,6 @@ function loadRecursosPorObjeto(objData, divContenedor, tipo_desglose) {
     if (objData != undefined && objData != null) {
         data_filter = objData;
 
-        //var sumaTotal = data_filter.reduce(function (acumulador, elemento) {
-        //    return acumulador + elemento.rawValue;
-        //}, 0);
         for (var i = 0; i < data_filter.length; i++) {
             data_filter[i].labelGroup = data_filter[i].labelGroup.replace(",", " ");
             data_filter[i].label = data_filter[i].label.replace(",", " ");
@@ -705,7 +698,7 @@ function loadRecursosPorObjeto(objData, divContenedor, tipo_desglose) {
             data_filter[i].label_nivel4 = data_filter[i].label_nivel4.replace(",", " ");
 
             data_filter[i].rawValue = parseFloat(data_filter[i].rawValue);
-            //data_filter[i].porcentaje = (((data_filter[i].rawValue / sumaTotal) * 100)).toFixed(2);
+
         }
 
         var paleta = {
@@ -755,7 +748,7 @@ function loadRecursosPorObjeto(objData, divContenedor, tipo_desglose) {
                 return traduc_aux;
             })
             .config({
-                //threshold: limitePorc,
+
                 data: data_filter,
                 groupBy: ["labelGroup", "label", "label_inf", "label_nivel4"],
                 height: 500,
@@ -778,9 +771,7 @@ function loadRecursosPorObjeto(objData, divContenedor, tipo_desglose) {
                             default:
                                 cad = d.labelGroup;
                         }
-                        //if (cad.length > longitud_tooltip) {
-                        //    cad = cad.substr(0, longitud_tooltip) + "...";
-                        //}
+
                         return cad;
                     },
                     tbody: [
@@ -808,7 +799,7 @@ function loadRecursosPorObjeto(objData, divContenedor, tipo_desglose) {
 
 }
 function loadListadoRecursosPorObjeto(objData, divContenedor) {
-    //cargalistado
+    
     $("#divGraphRecursosObj").append("<div><span>Listado</span></div>")
 }
 function getContratosCovid() {
@@ -821,8 +812,7 @@ function getContratosCovid() {
         cache: false,
         success: function (result) {
             if (result.status == true) {
-                // $("#cantidadRP").html("");
-                //alert(result.valorContratos);
+
                 if (result.NumContratosActivos > 0) {
                     $("#cantidadRP").html("&nbsp;&nbsp;&nbsp;" + result.NumContratosActivos);
                     $("#totalRP").html("RD $ " + formatMoney(parseFloat(result.ValorTotalContratosActivos / 1000000),0, ".", ",") + tituloMillones(parseFloat(result.ValorTotalContratosActivos).toFixed(0)));
@@ -862,7 +852,6 @@ function seteaListado() {
     $(".boxCompoDesglose").hide();
     $(".boxTituloListado").show();
     $("#sankey_basic").empty();
-    //seleccionar tab abierto
     var lstNiveles = $("#migapanlistado").val();
     var arrayNiv = lstNiveles.split(",");
     var nom_nivel = "";
@@ -897,8 +886,7 @@ function seteaListado() {
                     break;
                 default:
                     $('#accordion .collapse').removeClass("in");
-                // code block
-                //$('#accordion .collapse').removeClass("in");
+
             }
 
         }

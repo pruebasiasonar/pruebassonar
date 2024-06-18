@@ -48,8 +48,6 @@ function inicializaDatos() {
 
 function configuraSelectPeriodo() {
     $('#annioPresupuesto').on('change', function () {
-        //globales_proy = [];
-        //globales_entidad = [];
 
         anyo_actual = this.value;
         $("#annioPresupuestoText").html("" + anyo_actual);
@@ -72,8 +70,6 @@ function configuraSelectPeriodo() {
             }
         }
         
-        
-        /*getSectoresXFuenteIni(anyo_actual);*/
         
     })
 
@@ -109,7 +105,6 @@ function getGraficoPerTipoVista() {
 
 function configSelectVistaSankey() {
     $('input[name="tipoVistaSankey"]').change(function () {
-        //$("#btnAtras").hide();
         getGraficoPerTipoVista();
     });
 
@@ -117,9 +112,6 @@ function configSelectVistaSankey() {
 
 function configuraSelectDesglose() {
     $('.enlace_tab').on('click', function () {
-        //globales_proy = [];
-        //globales_entidad = [];
-
         $('.enlace_tab').each(function (i, obj) {
             $(obj).removeClass("active");
         });
@@ -132,7 +124,6 @@ function configuraSelectDesglose() {
             $("#ProyectosListado").hide();
             $("#divPerSectorTab").show();
             $("#divProyectosPerOrganismo").hide();
-            //$("#Instituciones").show();
             getSectoresXFuenteIni();
             
 
@@ -144,7 +135,6 @@ function configuraSelectDesglose() {
             $("#divInstitucionesPerSector").hide();
            
             $("#divProyectosPerOrganismo").show();
-            //$("#Instituciones").hide();
             getOrganismosXFuenteIni();
         }
     });
@@ -234,7 +224,6 @@ function getStrBarrasPerPeriodo(result, anyo_actual) {
 
 function GetRecursosPorFinalidad(anyo) {
     $("#divGraphPerFuncion").empty();
-    //finalidad_per_funcion(sector)
         $.ajax({
             contentType: "application/json; charset=utf-8",
             url: "api/ServiciosPresupuestoNew/GetRecursosPerFinalidad",
@@ -327,7 +316,6 @@ function loadRecursosPerFinalidad(objData) {
                 return traduc_aux;
             })
             .config({
-                //threshold: limitePorc,
                 data: data_filter,
                 groupBy: ["labelGroup","label"],
                 height: 500,
@@ -400,8 +388,6 @@ function ObtenerSectoresPeriodo(anyo_actual) {
                 if (global_tab == "sector" || global_tab=="") {
                     getSectoresXFuenteIni(anyo_actual);
                 }
-                //getSectoresXFuenteIni(anyo_actual);
-
 
 
             }
@@ -454,9 +440,7 @@ function ObtenerOrganismosPeriodo(anyo_actual) {
                 if (global_tab == "organismo") {
                     getOrganismosXFuenteIni(anyo_actual);
                 }
-                //getOrganismosXFuenteIni(anyo_actual);
-
-
+ 
 
             }
         }
@@ -543,7 +527,6 @@ function ObtenerDatosPerOrganismos(anyo, opcion, tipo) {
                     graphSankey(global_ini);
                     configSelectVistaSankey();
                     ObtenerDatosListadoPerProyectos(anyo_actual);
-                    //ObtenerDatosListadoPerEntidad(anyo_actual, "organismo");
 
                 } else {
                     $("#sankey_basic").html("");
@@ -642,7 +625,6 @@ function agruparNodos(objData) {
             var porc = 0;
             if (nivel == "n3") {
                 if (mayorValor > 0) {
-                    //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
                     porc = Math.round((valor / mayorValor) * 100, 0);
                 }
 
@@ -789,7 +771,7 @@ function agruparNodos(objData) {
             var porc = 0;
             if (nivel == "n4") {
                 if (mayorValor > 0) {
-                    //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
+
                     porc = Math.round((valor / mayorValor) * 100, 0);
                 }
 
@@ -1113,10 +1095,7 @@ function graphSankey(datos) {
                         }
                 }
             })
-            //.call(d3.behavior.drag()
-            //    .origin(function (d) { return d; })
-            //    .on("drag", dragmove)
-            //)
+            
 
         // add the rectangles for the nodes
         node.append("rect")
@@ -1170,12 +1149,7 @@ function graphSankey(datos) {
                     var new_cad = "";
                     if (cad_aux.length > longitud) {
                         new_cad = cad_aux.substring(0, longitud) + "...";
-                        //var regex = new RegExp('.{1,40}', 'g');
-                        //var subStrings = cad_aux.match(regex);
-                        //subStrings.forEach(function (item) {
-                        //    //new_cad += item + "< /br>";
-                        //    new_cad += "<tspan>" + item + "</tspan>"
-                        //});
+
                     } else {
                         new_cad = cad_aux;
                     }
@@ -1188,8 +1162,6 @@ function graphSankey(datos) {
             .filter(function (d) { return d.x < width / 4; })
             .attr("x", 6 + sankey.nodeWidth())
             .attr("text-anchor", "start");
-
-        //node.transition().duration(1750);
         sankey.relayout();
 
 
@@ -1264,7 +1236,7 @@ function graphSankey(datos) {
 
 
     function update(d) {
-        //miga_pan = "";
+
         var numAgrupador = 5;
         var cantElemAdd = 0;
         
@@ -1308,7 +1280,7 @@ function graphSankey(datos) {
             const result = miga_pan.replace(regex, '');
             if (opcion == 3) {
                 cant = 0;
-                //if (cant_padres > 0) {
+
 
                 if (vecSelect[0] == "n1") {
                     var filteredData = obtenerHijosYnietosConMismaRama(selection, global_sankey.links, "n4|");
@@ -1375,7 +1347,7 @@ function graphSankey(datos) {
 
                                         var porc = 0;
                                         if (mayorValor > 0) {
-                                            //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
+
                                             porc = Math.round((valor / mayorValor) * 100, 0);
                                         }
 
@@ -1505,7 +1477,7 @@ function graphSankey(datos) {
                                     if (nivel_destino == "n4") {
                                         //proyectos de inversion
                                         if (mayorValor > 0) {
-                                            //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
+
                                             porc = Math.round((valor / mayorValor) * 100, 0);
                                         }
 
@@ -1715,24 +1687,7 @@ function graphSankey(datos) {
                         
                     })
                     $("#btnAtras").show();
-                //}
-                //} else {
-                //    miga_pan = "";
-                //    $("#btnAtras").hide();
-                //    $("#sankey_basic").empty();
-                //    var obj_aux =
-                //    {
-                //        "links": global_sankey.links_nivel,
-                //        "nodes": global_sankey.nodes_nivel,
-                //        "cant_nodos": global_sankey.cant_nodos_nivel
-                //    };
-                //    graphSankey(obj_aux);
 
-                //}
-                //if (cant_padres <= 0) {
-                //    miga_pan = "";
-                //    $("#btnAtras").hide();
-                //}
 
             } else {
                 if (cant_hijos == 0) {
@@ -1914,14 +1869,6 @@ function ObtenerDatosListadoPerEntidad(periodo, tipo) {
 }
 
 function getEstructuraInfograficoPerEntidad(datos, pagina) {
-    var i_aux = 0;
-    var j_aux = 0;
-    var k_aux = 0;
-    //var l = 0;
-    var total_avance = 0;
-    var total_presupuesto = 0;
-    var periodo_aux = 0;
-    var total_porc_ejecutado = 0;
 
     var html_list = '<div class="card-entidades-group">';
     for (var i = 0; i < datos.length; i++) {
@@ -2104,16 +2051,6 @@ function ObtenerDatosListadoPerProyectos(periodo) {
 function getEstructuraInfograficoPerProyecto(datos, pagina) {
 
 
-        ///---------------------------------------------
-        var i_aux = 0;
-        var j_aux = 0;
-        var k_aux = 0;
-        //var l = 0;
-        var total_avance = 0;
-        var total_presupuesto = 0;
-        var periodo_aux = 0;
-        var total_porc_ejecutado = 0;
-        ///---------------------------------------------
         var html_list = '<div class="card-entidades-group">';
         for (var i = 0; i < datos.length; i++) {
             var nombre = datos[i].nombre;
@@ -2271,8 +2208,6 @@ function ObtenerDatosPerSectores(anyo, opcion, tipo) {
                         };
                     }
 
-                    //global_ini = datos_iniciales;
-
 
                     if (total_vigente != null) {
 
@@ -2390,9 +2325,6 @@ function obtMatrizData(data, nivel_inicial, nivel_detalle) {
 
                 var nom_Nivel3 = value.nombre;
                 var id_Nivel3 = value.id;
-                //if (nom_Nivel3.length > 80) {
-                //    nom_Nivel3 = nom_Nivel3.substring(0, 4) + "...";
-                //}
 
                 var valor_Nivel3 = (value.presupuesto / 1);
                 test = obj_nodos.some(item => item.name === value.nombre);
@@ -2639,7 +2571,7 @@ function configuraSelectEntidadesGasto() {
 
 function getEntidadesIni() {
     $(".selectEntidad").each(function () {
-        //$(this).addClass("foo");
+
         if ($(this).children.length > 0) {
             var id = $(this).attr("id");
             var str = id + "option:eq(0)";
@@ -2694,8 +2626,7 @@ function GetGastoEntidades(annio, filtro) {
         loadBarChartEntidades(result, "divGraphBarChartGastoEntidades");
 
     }).fail(function (handleError) {
-        // Some function
-        //console.log(handleError);
+
     });
 }
 
@@ -2731,7 +2662,7 @@ function loadBarChartEntidades(objData, divContenedor, tipo) {
                 },
                 tooltipConfig: {
                     title: function (d) {
-                        //return d["label"] + "<br> " + "Presupuesto " + d["labelGroup"];
+
                         return "Presupuesto " + d["labelGroup"];
                     },
                     tbody: [
@@ -2818,8 +2749,7 @@ function GetGastoTiempoEntidades(annio, filtro) {
         LoadLineEntidadesPerTiempo(result, "grafico_lineas");
 
     }).fail(function (handleError) {
-        // Some function
-        //console.log(handleError);
+
     });
 }
 
@@ -2864,7 +2794,7 @@ function LoadLineEntidadesPerTiempo(objData, divContenedor) {
             tickFormat: function (value) {
                 var cad_mes = getNomMes(value);
                 return cad_mes;
-                //return value;
+             
             }
 
         },

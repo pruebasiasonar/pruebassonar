@@ -37,16 +37,15 @@ function getGraficasAll() {
 }
 
 function configuraEnlaceContratista() {
-    //$(".enlace_contratista").click(function () {
-    //    var ruc = $(this).attr('data-parameter');
-    //    var dataValue = $(this).attr('data-parameter'),
-    //        dataType = $(this).attr('data-type').toLowerCase();
-    //    document.cookie = "ruc=" + ruc + ";path=/;";
-    //    var url = "/contratista?" + dataType + "=" + dataValue;
-    //    window.location.href = url;
+    $(".enlace_contratista").click(function () {
+        var ruc = $(this).attr('data-parameter');
+        var dataValue = $(this).attr('data-parameter'),
+            dataType = $(this).attr('data-type').toLowerCase();
+        document.cookie = "ruc=" + ruc + ";path=/;";
+        var url = "/contratista?" + dataType + "=" + dataValue;
+        window.location.href = url;
 
-    //});
-
+    });
 
 }
 
@@ -81,7 +80,6 @@ function getInfoGraficaContratosPerAnyo() {
                 $("#secCantidadContrato").css("display", "");
                 $("#divContenedorContratosCantidad").css("display", "");
                 $("#divGraphContratosCantidad").css("display", "");
-                //barra_vertical("divGraphContratosCantidad", contratos_anyo_data, "CANTIDAD DE CONTRATOS POR AÑO", "#0382B9", "Contratos");
                 loadBarChartUnidades(contratos_anyo_data,"divGraphContratosCantidad");
             } else {
                 $("#secCantidadContrato").css("display", "none");
@@ -122,7 +120,6 @@ function getInfoGraficaValorContratosPerAnyo() {
                 $("#secValorContrato").css("display", "");
                 $("#divContenedorContratosValor").css("display", "");
                 $("#divGraphContratosValor").css("display", "");
-                //barra_vertical("divGraphContratosValor", contratos_valor_data, "VALOR DE CONTRATOS POR AÑO", "#C51B4C", "Monto");
                 loadBarChartDinero(contratos_valor_data, "divGraphContratosValor");
             } else {
                 $("#secValorContrato").css("display", "none");
@@ -148,7 +145,6 @@ function loadBarChartUnidades(objData, divContenedor) {
             .select("#" + divContenedor)
             .translate(function (d) {
                 var traduc_aux = (d.toString());
-                //alert(d);
                 if (d === "Back" || d === "back") {
                     traduc_aux = "Atrás";
                 } else if (d === "Click to Expand") {
@@ -192,7 +188,6 @@ function loadBarChartUnidades(objData, divContenedor) {
                     fontsize: "2px",
                     size: "2px"
                 },
-               // legend: false
             })
             .barPadding(0)
             .groupPadding(50)
@@ -255,11 +250,9 @@ function loadBarChartDinero(objData, divContenedor) {
                     fontsize: "2px",
                     size: "2px"
                 },
-                // legend: false
             })
             .barPadding(0)
             .groupPadding(50)
-            // .stacked(true)
             .colorScale(["#4DE0E3", "#3899CD"])
             .height(400)
             .render();
@@ -299,7 +292,6 @@ function getAnnio() {
         data: params_usu,
         success: function (data) {
             deshabilita(true);
-            //alert(JSON.stringify(data));
 
             var items_result = data.detalles;
             var annios = [];
@@ -362,7 +354,7 @@ $("#btn-buscar").click(function () {
     if (!disableClick) {
         deshabilita(true);
         getContratos($("#top_contratos_periodos option:selected").val(), ruc_contratista, $("#top_origen_informacion option:selected").val(), 1, cant_contratos);
-        //getGraficasAll();
+
     }
 
 });
@@ -419,7 +411,6 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
                 .text(i)
         } else {
             var pag_enlace = divPag.append("a")
-                //.attr("id", "page_left")
                 .attr("class", "page_left")
                 .attr("role", "button")
                 .attr("data-page", i)
@@ -435,7 +426,6 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
     }
 
     if (pag_actual < totalPag) {
-        //(totalPag - pag_actual) > cant_por_linea
         if (fin < totalPag) {
             var pag_enlace_der = divPag.append("a")
                 .attr("id", "page_right")
@@ -452,7 +442,6 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
     $('#page_right,#page_left,.page_left,.page_right').bind('click', function () {
 
         deshabilita(true);
-        //$('#divPagContratos').attr('disabled', 'disabled');
         d3.select("#divProyectos").empty();
         pagina_actual = $(this).attr("data-page");
 
@@ -460,45 +449,6 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
     });
 
 }
-//function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
-//    var pag_actual = parseInt(actual);
-//    pagina_actual = pag_actual;
-//    var pagesHTML = '';
-//    $("#divPagContratos").empty();
-//    var divPag = d3.select("#divPagContratos")
-//    if (pag_actual > 1 && total >= cant_por_pag) {
-//        var pag_enlace = divPag.append("a")
-//            .attr("id", "page_left")
-//            .attr("class", "pull-left")
-//            .attr("data-page", pag_actual - 1)
-//        pag_enlace.append("span")
-//            .attr("class", "glyphicon glyphicon-arrow-left")
-//        pag_enlace.append("text")
-//            .text(" Anterior")
-//    }
-//    divPag.append("span")
-//        .attr("class", "totalpages")
-//        .text("Página " + actual + " de " + totalPag)
-
-//    if (pag_actual < totalPag) {
-//        if ((total - (pag_actual * cant_por_pag)) > 0) {
-//            var pag_enlace_der = divPag.append("a")
-//                .attr("id", "page_right")
-//                .attr("class", "pull-right")
-//                .attr("data-page", pag_actual + 1)
-//                .text("Próximo ")
-//            pag_enlace_der.append("span")
-//                .attr("class", "glyphicon glyphicon-arrow-right")
-//        }
-//    }
-
-//    $('#page_right,#page_left').bind('click', function () {
-//        d3.select("#divProyectos").empty();
-//        pagina_actual = $(this).attr("data-page");
-//        getContratos($("#top_contratos_periodos option:selected").val(), ruc_contratista, $("#top_origen_informacion option:selected").val(),pagina_actual, cant_por_pag);
-//    });
-
-//}
 
 function getContratos(annio, ruc, origen, pagina, registros) {
 
@@ -581,14 +531,6 @@ function getContratos(annio, ruc, origen, pagina, registros) {
                                     + '         </div>';
                             }
 
-                            //if (info[i].origenInformacion) {
-                            //    inicio += ''
-                            //        + '         <div class="row border-b">'
-                            //        + '             <div class="col-xs-12 col-md-12"><span class="txt_small">Fuente de Datos</span><span class="amount_adj">';
-                            //    inicio += info[i].origenInformacion.toString().toUpperCase().replace("ONCAE - CATALOGO ELECTRÓNICO", "ONCAE - CATÁLOGO ELECTRÓNICO");
-                            //    inicio += '</span></div>'
-                            //        + '         </div>';
-                            //}
 
 
                             if (info[i].estadoProceso) {
@@ -622,12 +564,10 @@ function getContratos(annio, ruc, origen, pagina, registros) {
                             origen = info[i].origenInformacion.toString();
                            
                         }
-                        // if (info[i].CodigoContrato){
                         fila += '<div class="panel panel-default">'
                             + '            <div class="panel-heading" role="tab" id="headingOne' + i + '">'
                             + '                <h4 class="panel-title">'
                             + '                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + i + '" aria-expanded="false" aria-controls="collapse' + i + '">';
-                       // if (info[i].COVID19 === 1 || info[i].COVID19 === 2) { fila += '                        <span class="badge"><img src="../../../content/img/covid/ic_mini.png" alt="iconoCOVID"> Covid-19</span>'; }
                         if (info[i].codigoContrato) { fila += '                        Código de contratación:  ' + info[i].codigoContrato.toString() + ''; } else { fila += '                      Pendiente emisión código contratación  ' }
                         var moneda = 'RD$';//'L';
                         if (info[i].monedaContrato.toString()) {
@@ -649,9 +589,7 @@ function getContratos(annio, ruc, origen, pagina, registros) {
                             + '                        <div class="col-md-3"><span class="small"> NÚMERO DE DOCUMENTO</span><span class="amount_adj">' + info[i].codigoProveedor.toString() + '</span></div>'
                             + '                    </div>'
                             + '                    <div class="row border-b">'
-                            //+ '                        <div class="col-xs-8 col-md-3"><span class="small"> PRESUPUESTO</span><span class="amount_adj">' + moneda + ' ' + (info[i].valorPlaneado * 1).formatMoney(2, '.', ',').toString() + ' </span></div>'
                             + '                        <div class="col-xs-6 col-md-4"><span class="small"> VALOR CONTRATADO</span><span class="amount_adj">' + moneda + ' ' + (info[i].valorContratado   * 1).formatMoney(2, '.', ',').toString() + ' </span></div>'
-                            //+ '                        <div class="col-xs-8 col-md-3"><span class="small"> MONTO</span><span class="amount_adj">' + moneda + ' ' + (info[i].valorAdjudicado * 1).formatMoney(2, '.', ',').toString() + ' </span></div>'
                             + '                        <div class="col-xs-6 col-md-4"><span class="small"> MONEDA</span><span class="amount_adj">' + info[i].monedaContrato + '</span></div>' //DOP 
 
                             + '                    </div>'
@@ -715,7 +653,6 @@ function getContratos(annio, ruc, origen, pagina, registros) {
                         fila += '       </div>'
                             + '            </div>'
                             + '        </div>';
-                        //+ '  </div>';
                     }
                     data += inicioLuis + inicio + fila + '</div></div>';
                     data += '<div class="row text-center">'

@@ -1,10 +1,7 @@
 ﻿inicializaDatos();
 
 function inicializaDatos() {
-    //var datos = $("#datoscontratos option:selected").val()
-    //cargaannos(datoscontrato, datos, 'annocontratos', 'idDicContratos', 'idUltimaActContratos', 'FuenteContratos');
-    //var datos2 = $("#datospresupuesto option:selected").val()
-    //cargaannos(datospresupuesto, datos2, 'annopresupuesto', 'idDicPresupuesto', 'idUltimaActPresupuesto', 'FuentePresupuesto');
+
     cargarfuentesdatos();
 }
 
@@ -94,14 +91,7 @@ function descargar(sel, rad) {
     }
     if ((url == undefined) || (url == "") || (url == null) || (url == "null")) {
         alert('No existe set de datos en el formato seleccionado');
-        //bootbox.alert({
-        //    message: 'No existe set de datos en el formato seleccionado',
-        //    buttons: {
-        //        ok: {
-        //            label: 'Aceptar'
-        //        }
-        //    }
-        //});
+
     }
     else {
         window.location.href = url;

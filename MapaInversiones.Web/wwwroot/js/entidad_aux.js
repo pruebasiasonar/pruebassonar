@@ -1,5 +1,5 @@
 ﻿var cant_contratos = 5;
-/*getAnnios();*/
+
 inicializaDatos();
 var pestaniaSeleccionada = 1;
 var scrol = 0;
@@ -39,7 +39,7 @@ function inicializaDatos() {
 }
 
 function configuraSelectTabContratos(tipo) {
-/*    alert(tipo);*/
+
     $(".enlace_tipo_contrato").removeClass("active");
     $("#analisis").addClass("active");
         if (tipo == "analisis") {
@@ -147,137 +147,7 @@ function GetDatosPorAnnio(anio) {
 
 }
 
-//function getAnnios() {
-//    var actual = new Date().getFullYear();  
-//    var limite = actual - 3;
-//    var select = "";
-//    for (var i = actual; i >= limite; i--) {
-//        if (i == actual) {
-//            select += '<option value="' + i.toString() + '" selected>' + i.toString() + '</option>';
-//        } else {
-//            select += '<option value="' + i.toString() + '">' + i.toString() + '</option>';
-//        }
-       
-//    }
 
-//    $("#annioEntidad").html(select);
-//}
-
-
-//function GetRecursosPorGrupo(anyo) {
-//    var codigoEntidad = $("#codigoEntidadId").val();
-//    $.ajax({
-//        contentType: "application/json; charset=utf-8",
-//        url: "api/serviciosentidad/GetRecursosPerGrupos",
-//        type: "GET",
-//        data: {
-//            anyo: anyo,
-//            codEntidad: codigoEntidad
-//        }
-//    }).done(function (data) {
-//        if (data.infoRecursos != null) {
-//            globales = data.infoRecursos;
-//            $("#divGraphRecursosObj").empty();
-//            $("#totalPresupuestoValue").html("L " + ((data.totalPresupuesto) / 1000000).formatMoney(1, '.', ',').toString() + " Millones");
-//            loadRecursosPorObjetoNivel(data.infoRecursos, 0);
-//        }
-//    }).fail(function (xhr, ajaxOptions, thrownError) {
-//        alert("Error " + xhr.status + "_" + thrownError);
-//    });
-
-//}
-
-//function loadRecursosPorObjetoNivel(objData, nivel) {
-//    if (objData != undefined && objData != null) {
-
-//        var distintos = objData.map(item => item.labelGroup)
-//            .filter((value, index, self) => self.indexOf(value) === index);
-//        var grafica = new d3plus.Treemap()
-//            .select("#divGraphRecursosObj")
-
-//            .shapeConfig({
-//                labelConfig: {
-//                    fontFamily: "'Montserrat', sans-serif",
-//                    align: "center",
-//                    size: 6,
-//                    transform: "capitalize"
-//                }
-//                , fill: function (d, index) {
-
-//                    var index = distintos.indexOf(d.labelGroup);
-//                    return assignColor(index);
-
-//                }
-//            })
-//            .on("click", function (d) {
-//                var current = grafica.depth();
-//                $(".d3plus-viz-back").click(function () {
-//                    var depth_aux = grafica.depth();
-//                    console.log("btn_atras|| nivel " + nivel + " || depth" + depth_aux);
-//                    $("#divGraphRecursosObj").attr("nivel", depth_aux.toString());
-//                    if (depth_aux == nivel) {
-//                        $("#divGraphRecursosObj").empty();
-//                        loadRecursosPorObjetoNivel(globales, 0);
-//                    }
-//                });
-//            })
-//            .translate(function (d) {
-//                var traduc_aux = d;
-//                if (d === "Back" || d === "back") {
-//                    traduc_aux = "Atrás";
-//                } else if (d === "Click to Expand") {
-//                    traduc_aux = "Clic para Expandir";
-//                } else if (d === "No Data Available") {
-//                    traduc_aux = "Información No Disponible";
-//                } else {
-//                    traduc_aux = d;
-//                }
-//                return traduc_aux;
-//            })
-//            .config({
-//                data: objData,
-//                groupBy: ["labelGroup", "label"],
-//                tooltipConfig: {
-//                    title: function (d) {
-//                        var depth_aux = grafica.depth();
-//                        var longitud = 80;
-//                        var cad = d.labelGroup;
-//                        switch (depth_aux) {
-//                            case 1:
-//                                cad = "Objeto de Gasto: " + d.label;
-//                                break;
-//                            default:
-//                                cad = d.labelGroup;
-//                        }
-
-//                        return cad;
-//                    },
-//                    tbody: [
-//                        [function (d) {
-//                            var valor = d["rawValueDouble"] / 1000000;
-//                            var cad = "";
-//                            cad += "<span>Recursos asignados " + "L " + valor.formatMoney(1, '.', ',').toString() + " Millones" + "</span></br>";
-//                            return cad;
-//                        }]
-//                    ]
-//                },
-//                yConfig: {
-//                    title: "",
-//                }
-//            })
-//            .sum("rawValueDouble")
-//            .depth(nivel)
-//            .legend(false)
-//            .render();
-//    }
-
-//}
-
-////graficoTreemapRecursosxNiveles
-//function assignColor(indice) {
-//    var colores_default = ['#89CFE0', '#276D7E', '#FDD36A', '#FBC99A', '#F7B6A7', '#57BEC3','#ED6A60', '#F6B5C4', '#42B073', '#89CFE0', '#276D7E', '#FDD36A'];
-//    return colores_default[indice];
-//}
 
 
 function monedaSimbolo(codigo) {
@@ -312,7 +182,6 @@ function getContratos(pagina, registros, entidad, proceso, proyecto) {
         cache: false,
         data: filtros,
         success: function (result) {
-            //  deshabilita(true);
             if (scrol >= 1) {
                 $('html, body').animate({ scrollTop: $('#trazabilidad').offset().top }, 2000);
             } else { scrol = scrol + 1; }
@@ -332,7 +201,7 @@ function getContratos(pagina, registros, entidad, proceso, proyecto) {
                     var fin = "";
                     $("#srcContratos").html("");
                     for (var i = 0; i < info.length; i++) {
-                        if (i > 0 && proceso != info[i].codigoProceso.toString()) { // && entidad == info[i].comprador.toString()
+                        if (i > 0 && proceso != info[i].codigoProceso.toString()) { 
                             fila += filaconfirma + '</div>' + referencia + '</div>';
                             filaconfirma = "";
 
@@ -372,19 +241,6 @@ function getContratos(pagina, registros, entidad, proceso, proyecto) {
                                 + '<div class="wrap-head-process">';
                             fila += '<div class="contractData">';
 
-                            //fila += ''
-                            //    + '		<div class="row border-b">'
-                            //    + '			<div class="col-xs-12 col-md-4">'
-                            //    + '				<span class="txt_small">Estado del proceso</span>'
-                            //    + '				<span class="amount_adj">';
-                            ////if (info[i].estadoProceso) { fila += info[i].estadoProceso.toString(); }
-                            //fila += '</span></div>'
-                            //    + '			<div class="col-xs-6 col-md-4"><span class="txt_small"></div>'/*   Monto Estimado<span class="amount_adj"> NA </span>*/
-                            //    + '			    <div class="col-xs-6 col-md-2">'
-                            //    + '				   <span class="txt_small">Moneda</span>'
-                            //    + '				   <span class="amount_adj"> ' + 'COP' + ' </span>' // info[i].monedaContrato.toString()
-                            //    + '			    </div>'
-                            //    + '			</div>';
 
 
                             fila += ''
@@ -457,11 +313,9 @@ function getContratos(pagina, registros, entidad, proceso, proyecto) {
                             + '                            <span class="small"> Objeto del Contrato </span>'
                             + '                            <span class="amount_adj"><span class="glyphicon glyphicon-share-alt"></span>' + info[i].objetodelcontrato.toString() + '</span>'
                             + '                        </div>'
-                            /*                            + '                        <div class="col-md-6"><span class="small"> Contratista</span></div>'*/
                             + '                    </div>'
                             + '                    <div class="row border-b">'
                             + '                        <div class="col-xs-6 col-md-6"><span class="small"> Estado </span><span class="amount_adj"> ' + info[i].estadocontrato.toString() + ' </span></div>' // ' + (info[i].valorPlaneado * 1).formatMoney(1, '.', ',').toString() + '
-                            //+ '                        <div class="col-xs-6 col-md-6"><span class="small"> VALOR ADJUDICADO</span><span class="amount_adj"> ' + moneda + ' </span></div>' //' + (info[i].valorAdjudicado * 1).formatMoney(1, '.', ',').toString() + ' 
                             + '                    </div>'
                             + '                    <div class="row border-b">'
                             + '                        <div class="col-xs-6 col-md-6"><span class="small"> Valor Contrato</span><span class="amount_adj"> ' + moneda + ' ' + (info[i].valorcontrato * 1).formatMoney(1, '.', ',').toString() + ' </span></div>'
@@ -526,12 +380,11 @@ function getContratos(pagina, registros, entidad, proceso, proyecto) {
                             + '               <div class="panel-footer" style="align:center">';
 
                         if (info[i].codigoContrato) {
-                            //  filaconfirma += '                    <a href="../../contratista/contratoprofile/?CodigoContrato=' + info[i].codigoContrato.toString() + '" class="btn btn-primary btn-primary btn-participe"><span class="glyphicon glyphicon-comment"></span> Hacer comentario al contrato</a>';
                         }
                         filaconfirma += '                 </div>'
                             + '            </div>'
                             + '        </div>';
-                        //+ '  </div>';
+
                     }
 
 
@@ -541,7 +394,6 @@ function getContratos(pagina, registros, entidad, proceso, proyecto) {
                     $("#srcContratos").html(data);
                    
 
-                    // dibujaPaginacionContrato(pagina, result.cantidadTotalRegistros, Math.ceil(result.cantidadTotalRegistros / registros), registros);
                     configuraEnlaceContratista();
                     if (Math.ceil(result.cantidadTotalRegistros / registros) > 1) {
                         dibujarPagNumeradasPerContratos(pagina, Math.ceil(result.cantidadTotalRegistros / registros));
@@ -623,7 +475,6 @@ function dibujarPagNumeradasPerContratos(actual, totalPag) {
 
     $('#page_right_c,#page_left_c,.page_left_c,.page_right_c').bind('click', function () {
         pagina_actual = $(this).attr("data-page_c");
-        //$("#srcContratos").empty();
         getContratos(pagina_actual, cant_contratos, $("#entidad").val(), $('#proceso').val());
     });
 
@@ -650,10 +501,7 @@ function clickbotoncontratosasoc(id) {
     $("#spanfiltrado").removeAttr("hidden");
     $(".enlace_tipo_contrato").removeClass("active");
     $("#contratos").addClass("active");
-    //$("#divPagFichas").html("");
-    //$("#divInversion").empty();
-    //$("#divInversion").html(loader_proy);
-    //$("#divInversion").empty().delay(200);
+
     $("#divInversionSection").hide();
     $("#divListadoContratos").show().delay(800);
 
@@ -666,7 +514,6 @@ $("#btnLimpiar").click(function () {
     if (!disableClick) {
         $("#spanfiltrado").attr("hidden", "hidden");
         $("#top_contratos_periodos").val(0);
-        //$("#top_contratos_estados").val("");
         $("#top_origen_informacion").val("");
         $("#entidad").val("");
         $("#proceso").val("");
@@ -717,7 +564,7 @@ $("#entidad").on("keyup", function (event) {
                 } else {
                     $("#divNoEncontrado").hide();
                     response($.map(datos.data, function (item) {
-                        //x alert(item);
+
                         return {
                             label: item.proveedor,
                             value: item.documentoproveedor
@@ -739,9 +586,7 @@ $("#entidad").on("keyup", function (event) {
     delay: 300,
     minLength: 1,
     select: function (event, ui) {
-        //$(this).val(ui.item.Nombre).next().val(ui.item.Id);
-        //$("#divResultados").html("");
-        //return false;
+
     }
 }).bind('blur onblur', function () {
     if ($(this).val() == "") {
@@ -834,12 +679,9 @@ function configuraSelectProgramas() {
 function setValoresXPrograma(data) {
     var valor_vigente = data[0].presupuesto;
     var valor_ejecutado = data[0].ejecutado;
-    //var valor_formulado = data[0].formulado;
     var valor_aprobado = data[0].aprobado;
-    //var icono_autonomia = data[0].autonomia_icono;
     //--------------------------------------------------------------------
 
-    //var texto_formulado = '<span class="">' + monedaSimbolo("RD") + ' ' + (valor_formulado / 1000000).formatMoney(1, '.', ',').toString() + ' Millones</span>';
     var texto_aprobado = '<span class="">' + monedaSimbolo("RD") + ' ' + (valor_aprobado / 1000000).formatMoney(1, ',', '.').toString() + ' Millones</span>';
     var texto_vigente = '<span class="">' + monedaSimbolo("RD") + ' ' + (valor_vigente / 1000000).formatMoney(1, ',', '.').toString() + ' Millones</span>';
     var texto_ejecutado = '<span class="">' + monedaSimbolo("RD") + ' ' + (valor_ejecutado / 1000000).formatMoney(1, ',', '.').toString() + ' Millones</span>';
@@ -852,32 +694,11 @@ function setValoresXPrograma(data) {
     //-----------------------------------------------------------
     var str_programa = '<div class="row justify-content-center">';  //inicio row
 
-    //---------------------------------------------------
-    //if (icono_autonomia != null) {
-    //    if (icono_autonomia != "") {
-    //        str_programa += '<div class="col-md-2">';
-    //        str_programa += '<div>';
-    //        str_programa += '<img class="markPpgSz" src="img/svg-icons/' + icono_autonomia + '" />';
-    //        str_programa += '</div>';
-    //        str_programa += '</div>';
-    //    }
-    //}
+
 
     str_programa += '<div class="col-md-10">';
     str_programa += '<div class="row">';
-    //-----------------------------------------------------
-    //str_programa += '<div class="presini col-md-3">';
-    //str_programa += '<span class="h5">Proyecto de Presupuesto</span>';
-    //str_programa += '<div class="clearfix"></div>';
-    //str_programa += '<span class="h2">' + texto_formulado + '</span>';
-    //str_programa += '</div>';
-    //---------------------------------------------------
-    //str_programa += '<div class="presini col-md-3">';
-    //str_programa += '<span class="h5">Presupuesto Aprobado</span>';
-    //str_programa += '<div class="clearfix"></div>';
-    //str_programa += '<span class="h2">' + texto_aprobado + '</span>';
-    //str_programa += '</div>';
-    //---------------------------------------------------
+
     str_programa += '<div class="presini col-md-4">';
     str_programa += '<span class="h5">Presupuesto Vigente</span>';
     str_programa += '<div class="clearfix"></div>';
@@ -932,7 +753,6 @@ function GetDatosByTipo(anyo, tipo, programa)
     }
     $("#divPagFichas").html("");
     $("#divInversion").empty();
-    //$("#divOtrasLineas").empty();
     $("#divInversion").html(loader_proy);
     var codigoEntidad = $("#codigoEntidadId").val();
     var moneda = 'RD$ ';
@@ -1056,19 +876,9 @@ function getEstructuraInfograficoNew(datos, pagina) {
 
 
 
-        //------------------
-        //html_str += '<h6 class="btnPerfil badge bg-light text-dark"><i class="material-icons md-18">info_outline</i> Ver líneas presupuestales</h6>';
-        //------------------
-
         html_str += '<div class="actions-links">';
         html_str += '<span class="badge badge-pill badge-primary">Ver líneas presupuestales</span>';
         html_str += '</div>';
-
-
-        //html_str += '<div class="data1">';
-        //html_str += '<span class="labelTit"><a target="_blank" href="/PerfilProyecto/' + url_proy + '">Ver Perfil de Proyecto</a></span>';
-        //html_str += '<span class="td1"></span>';
-        //html_str += '</div>';
 
 
 
@@ -1153,11 +963,6 @@ function getEstructuraInfograficoNew(datos, pagina) {
 
         ///----------------------------------BOTONES
         html_str += '<div class="row align-items-center">';
-        //html_str += '<div class="col-md-2 offset-md-4">';
-        //html_str += '<div class="actions-links">';
-        //html_str += '<a target="_blank" href="' + url_proy + '" class="text - small">';
-        //html_str += '<span class="badge badge-pill badge-primary"> Ver Perfil del Proyecto</span>';
-        //html_str += '</a>';
         html_str += '</div>';
         html_str += '</div>';
 
@@ -1405,7 +1210,6 @@ function dibujarPagNumeradasPerLineas(actual, total, totalPag) {
 
 function GetRecursosPorFinalidad(anyo) {
     $("#divGraphPerFuncion").empty();
-    //finalidad_per_funcion(sector)
     $.ajax({
         contentType: "application/json; charset=utf-8",
         url: "api/serviciosentidad/GetRecursosPorFinalidad",
@@ -1458,25 +1262,7 @@ function loadRecursosPerFinalidad(objData) {
             data_filter[i].porcentaje = (((data_filter[i].rawValueDouble / sumaTotal) * 100)).toFixed(2);
         }
 
-        //var paleta = {
-        //    colores: [
-        //        "#e6e6e6",
-        //        "#c4e5ee",
-        //        "#fcd96c",
-        //        "#3e5174",
-        //        "#ea5670",
-        //        "#999999",
-        //        "#1c717f",
-        //        "#64b5e2",
-        //        "#7fcbdc",
-        //        "#e7753d"
-        //    ]
-        //};
-
-        //function colorPorPosicion(posicion) {
-        //    return paleta.colores[posicion % paleta.colores.length];
-        //}
-
+     
         var distintos = objData.map(item => item.labelGroup)
             .filter((value, index, self) => self.indexOf(value) === index);
 
@@ -1491,7 +1277,6 @@ function loadRecursosPerFinalidad(objData) {
                     transform: "capitalize"
                 },
                  fill: function (d, index) {
-                    //var index = distintos.indexOf(d["parent"]); 
                     return assignColorPaleta(index);
 
                 }
@@ -1757,7 +1542,6 @@ function horizontalBar(data, div) {
         .selectAll(".tick text")
         .call(wrap, 75)
         .attr("transform", "translate(-2,-30)")
-    //alert(y.rangeBand() - 150);
 
     var bars = svg.selectAll(".bar")
         .data(data)
@@ -1850,17 +1634,8 @@ function GetRecursosPorNivelYAnio(anio) {
 function GetListadoInstituciones(institucionesPorPagina) {
 
     $("#divProcesos").html("");
-    //console.log("Total instituciones por página:", institucionesPorPagina.length);
     var html_list = '<div class="card-entidades-group">';
     for (var i = 0; i < institucionesPorPagina.length; i++) {
-        //var nom_institucion = institucionesPorPagina[i]['nombre'];
-        //var presup_aprobado = institucionesPorPagina[i]['aprobado'] / 1000000;
-        //var presup_vigente = institucionesPorPagina[i]['vigente'] / 1000000;
-        //var presup_ejecutado = institucionesPorPagina[i]['ejecutado'] / 1000000;
-        ////var porcentaje_ejecucion = institucionesPorPagina[i]['porcentajeEjecucion'];
-        //var porcentaje_ejecucion = presup_ejecutado * 100 / presup_vigente;
-        //var cod_institucion = institucionesPorPagina[i]['codigo'];
-        //var annioSelected = $("#anioInstitucion").val() != "" ? $("#anioInstitucion").val() : 0;
 
         html_list += '<div id="proceso_' + i.toString() + '" class="card d-flex">';
         html_list += '<div class="headEnt">';
@@ -1890,18 +1665,15 @@ function GetListadoInstituciones(institucionesPorPagina) {
 function dibujarPagNumeradas(paginaActual) {
     var totalNumber = proyectos.length;
     var totalPages = (totalNumber > cantXPagina) ? ((totalNumber - (totalNumber % cantXPagina)) / cantXPagina) : 1;
-    //console.log("TotalNumber:", totalNumber);
-    //console.log("Total pages:", totalPages);
-    //console.log("CantXPagina:", cantXPagina);
+
     if ((totalNumber >= cantXPagina) && ((totalNumber % cantXPagina) > 0)) {
         totalPages = totalPages + 1;
     }
     var pagActual = parseInt(paginaActual);
-    //var pagesHTML = '';
-    //var cant_por_pag = 6;
+
     var totalNumerosPaginador = 10;
     $("#divPagFichasPro").html("");
-    //var divPag = $("#divPagFichas")
+
     var pagEnlace = "";
 
     var cociente = Math.floor(pagActual / totalNumerosPaginador);
@@ -1924,9 +1696,6 @@ function dibujarPagNumeradas(paginaActual) {
         pagEnlace += '<a id="page_left" role="button" class="material-icons md-24" data-page="' + (inicio - totalNumerosPaginador) + '"><span class="">chevron_left</span></a>';
     }
 
-    //console.log("Inicio paginador:", inicio);
-    //console.log("Fin paginador:", fin);
-    //console.log("Pagina actual paginador:", pagActual);
     for (var i = inicio; i <= fin; i++) {
         if (i == pagActual) {
             pagEnlace += '<span class="pag_actual" data-page="' + i + '"><text>' + i + '</text></span>';
@@ -1944,18 +1713,16 @@ function dibujarPagNumeradas(paginaActual) {
             pagEnlace += '<a id="page_right" role="button" class="material-icons md-24" data-page="' + (fin + 1) + '"><span class="">chevron_right</span></a>';
         }
     }
-    //console.log("pagEnlace", pagEnlace);
+
     $("#divPagFichasPro").html(pagEnlace);
 
     $('#page_right,#page_left,.page_left,.page_right').bind('click', function () {
         paginaActual = $(this).attr("data-page");
-        //console.log("paginaActual", JSON.stringify(paginaActual, null, 2));
+
         $("#divProcesos").empty();
         inidata = ((paginaActual - 1) * cantXPagina);
         findata = (paginaActual * cantXPagina) - 1;
-        //console.log("cantXPagina", JSON.stringify(cantXPagina, null, 2));
-        //console.log("inidata", JSON.stringify(inidata, null, 2));
-        //console.log("findata", JSON.stringify(findata, null, 2));
+
         var institucionesPorPagina = jQuery.grep(proyectos, function (n, i) {
             return (i >= inidata && i <= findata);
         });

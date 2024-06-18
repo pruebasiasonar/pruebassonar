@@ -99,21 +99,11 @@
 
                                 if (proceso != info[i].codigoProceso.toString()) {
                                     
-                                    //fila += '<div class="processName">'
-                                    //    + '		<div class="row">'
-                                    //    + '			<div class="col-xs-12 col-md-6">'
-                                    //    + '				<span class="small">Origen de los fondos</span><div class="clearfix"></div>'
-                                    //    + '				<span class="h4">' + info[i].origenFondos.toString() + '</span>  </div>'
-                                    //    + '			<div class="col-xs-12 col-md-6">'
-                                    //    + '				<span class="small">Fuente de Datos</span><div class="clearfix"></div>'
-                                    //    + '				<span class="h4">' + info[i].origenInformacion.toString().toUpperCase().replace("ONCAE - CATALOGO ELECTRÓNICO", "ONCAE - CATÁLOGO ELECTRÓNICO") + '</span>  </div> '
-                                    //    + '      </div> '
-                                    //+ '	</div>';
+
                                     $('#srcProceso').html('Proceso: ' + info[i].descripcionProceso.toString());
                                     fila += '<div class="contractNumberRP"><span class="">Código proceso: </span>'
                                         + '	<span class="text-bold">' + info[i].codigoProceso.toString() + '</span></div>'
-                                        //+ '<div class="contractNumberRP"><span class="">Proceso: </span>'
-                                        //+ '	<span class="text-bold">' + info[i].descripcionProceso.toString() + '</span></div>'
+
 							            + '<div class="wrap-head-process">';
                                     fila += '<div class="contractData">';
 
@@ -167,9 +157,6 @@
                                     proceso = info[i].codigoProceso.toString();
 
 
-                                    //referencia = '<div class="row text-center">'
-                                    //+ '<div class="col-xs-12 col-md-12"><a href="' + info[i].docURL.toString() + '" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> <span class="txt_small">Conozca mas de este proceso</span></a></div>'
-                                    //+ '</div>';
                                     $("#enlaceproceso").attr('href', info[i].docURL.toString())
 
                                 }
@@ -210,10 +197,7 @@
                                     + '                        <div class="col-xs-6 col-md-6"><span class="small"> VALOR CONTRATADO</span><span class="amount_adj"> ' + moneda + ' ' + (info[i].valorContratado * 1).formatMoney(2, '.', ',').toString() + '</span></div>'
                                     + '                        <div class="col-xs-6 col-md-6"><span class="small"> MONEDA</span><span class="amount_adj"> ' + info[i].monedaContrato.toString() + ' </span></div>'
                                    + '                    </div>'
-                                   //+ '                    <div class="row border-b">'
-                                   //+ '                        <div class="col-xs-6 col-md-6"><span class="small"> MONTO</span><span class="amount_adj"> ' + moneda + ' ' + (info[i].valorContratado * 1).formatMoney(1, '.', ',').toString() + ' </span></div>'
-                                   //+ '                        <div class="col-xs-6 col-md-6"><span class="small"> MONEDA</span><span class="amount_adj">' + info[i].monedaContrato.toString() + '</span></div>' //DOP 
-                                   //+ '                    </div>';
+
 
                                 filaconfirma += '                    <div class="row border-b">';
 
@@ -273,7 +257,6 @@
                                 + '               <div class="panel-footer" style="align:center">';
 
                                 if (info[i].codigoContrato) {
-                                    //filaconfirma += '                    <a href="../../contrato?codcontrato=' + info[i].codigoContrato.toString() + '" class="btn btn-primary btn-primary btn-participe"><span class="glyphicon glyphicon-comment"></span> Hacer comentario al contrato</a>';
                                 }
                                 filaconfirma += '                 </div>'
                                 + '            </div>'
@@ -290,7 +273,6 @@
                                 $('html, body').animate({ scrollTop: $('#secInfoContratos').offset().top }, 2000);
                             } else { scrol = scrol + 1; }
 
-                            //dibujaPaginacionContrato(pagina, result.cantidadTotalRegistros, Math.ceil(result.cantidadTotalRegistros / registros), registros);
                             configuraEnlaceContratista();
                         }
                         else {
@@ -304,14 +286,11 @@
                     } else {
                         alert("Message: " + result.message);
                     }
-                    //deshabilita(false);
                 },
                 error: function (response) {
-                    //deshabilita(false);
                     alert(response.responseText);
                 },
                 failure: function (response) {
-                    //deshabilita(false);
                     alert(response.responseText);
                 }
             });

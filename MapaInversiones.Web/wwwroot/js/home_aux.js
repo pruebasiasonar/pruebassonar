@@ -4,7 +4,6 @@ var anyo_actual = $("#anioPresupuesto option:selected").val();
 $("#lblAnyoBannerSec").text(anyo_actual);
 ///-------------------------------------------------------
 loadFuentesporAnnios();
-//loadProyectosPrioritarios(proyectos_eje);
 
 ObtenerGraphBySectorPerGroup(anyo_actual);
 
@@ -331,9 +330,7 @@ function formatMoney(number, c, d, t) {
 
 $("#anioPresupuesto").on("change", function (event) {
     anyo_actual = this.value;
-    //$("#lblAnyoBannerSec").text(anyo_actual);
     loadFuentesporAnnios();
-    //ObtenerGraphBySectorPerGroup(anyo_actual);
 
     
 });
@@ -431,23 +428,6 @@ function getGraphDonaFuentesPerAnyo(anyo) {
             .attr("stroke", "gray")
             .attr("stroke-width", 1);
 
-        //const textEl = d3.select("#divGraphDonaPerFuentes")
-        //    .selectAll("newText")
-        //    .data(data)
-        //    .enter()
-        //    .append("text")
-        //    .attr("x", function (d) {
-        //        return d3.pointRadial((d.startAngle + d.endAngle - 0.1) / 2, (50 + 90) / 2)[0];
-        //    })
-        //    .attr("y", d => d3.pointRadial((d.startAngle + d.endAngle - 0.1) / 2, (50 + 90) / 2)[1])
-        //    .attr("text-anchor", d => {
-        //        //return (d.startAngle + d.endAngle) / 2 > Math.PI ? "end" : "start";
-        //        return "middle";
-        //    })
-        //    .text(d => d.data.Fuente)
-        //    .attr("font-size", "10px")
-        //    .attr("fill", "black")
-        //    .attr("transform", "translate(100,100)")
 
 
 
@@ -476,21 +456,18 @@ function cargardatosorganismos(idfuente) {
                     $("#numproyectos").html(result.consolidadoOrganismoFinanciador.totalProyectosFinanciados);
                     $("#numaportado").html('RD$ ' + formatMoney(result.consolidadoOrganismoFinanciador.totalAportado, 0, ".", ",").toString() + ' Millones');
                 }
-                //var numproyectos = 0;
-                //var aportado = 0;
+
                 var htmldivorganismos = '';
                 var numeroorganismosmostrar = 3;
                 if (info != null) {
                     for (var i = 0; i < info.length; i++) {
-                        //numproyectos += info[i].numeroProyectos;
-                        //aportado += info[i].valorVigente;
+
                         if (i < numeroorganismosmostrar) { 
                             htmldivorganismos += '<div class="col-lg-4 mb-4">';
                             htmldivorganismos += '    <div class="card h-100 shadow border-0 card-entidad">';
                             htmldivorganismos += '        <div class="card-body CTASectores">';
                             htmldivorganismos += '            <div class="card-title-container">';
                             htmldivorganismos += '                <span class="h4">';
-                            //htmldivorganismos += '                    Banco Interamericano de Desarrollo - BID';
                             htmldivorganismos += info[i].organismoFinanciador;
                             htmldivorganismos += '                </span>';
                             htmldivorganismos += '            </div>';
@@ -501,7 +478,6 @@ function cargardatosorganismos(idfuente) {
                             htmldivorganismos += '                <div class="card-subtitle-container">';
                             htmldivorganismos += '                    <span class="SbtBigNumber">' + info[i].numeroProyectos +'</span>';
                             htmldivorganismos += '                    <span class="SbtPresupuesto">Proyectos Financiados</span>';
-                            //htmldivorganismos += '                    <span class="SbtBigNumber">RD$ 3,161.73 Millones</span>';
                             htmldivorganismos += '                    <span class="SbtBigNumber"> RD$ ' + formatMoney(info[i].valorVigente / 1000000, 0, ".", ",").toString() +'Millones </span>';
                             htmldivorganismos += '                    <span class="SbtPresupuesto">Monto total financiado</span>';
                             htmldivorganismos += '                    <a href="/FinancialOrganizationDetail?id=' + info[i].codigoOrganismoFinanciador + '&anio=' + annio_aux +'">';
@@ -515,9 +491,7 @@ function cargardatosorganismos(idfuente) {
                         }
                     }
                     console.log("result.ConsolidadoOrganismoFinanciador", result);
-                    //$("#numorganismos").html(i);
-                    //$("#numproyectos").html(numproyectos);
-                    //$("#numaportado").html('RD$ ' + formatMoney(aportado / 1000000, 0, ".", ",").toString() + ' Millones');
+
                     $("#divorganismos").html(htmldivorganismos);
                 }
 

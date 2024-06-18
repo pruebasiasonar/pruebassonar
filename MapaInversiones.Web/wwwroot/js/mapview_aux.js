@@ -4,7 +4,6 @@ InicializaDatos();
 
 function InicializaDatos() {
 
-    //configuraFiltro();
     GetProyectosNacionales();
     
 }

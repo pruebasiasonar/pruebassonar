@@ -5,9 +5,7 @@
     if (contratistaData != null && contratistaData != undefined && contratistaData.length > 0) {
         ruc_contratista = contratistaData[0].contratista_id;
     }
-    //if (tipoemergencia === "") {
-    //    tipoemergencia = null;
-    //}
+
     var cant_contratos = 5;
     var scrol = 0;
 
@@ -46,7 +44,6 @@
         if (!disableClick) {
             $("#top_contratista_periodos").val($("#top_contratista_periodos").attr("default"));
             if (!unidadcompra) { $("#entidadfiona").val(""); }
-            //alert($("#entidadfiona").val())
             $("#proceso").val("");
             deshabilita(true);
             getContratos(1, cant_contratos, $("#top_contratista_estados option:selected").val(), $('#entidadfiona').val(), "", tipoemergencia);
@@ -105,9 +102,7 @@
         var pag_actual = parseInt(actual);
         pagina_actual = pag_actual;
         var pagesHTML = '';
-        //var cant_por_pag = 6;
         var cant_por_linea = 10;
-        //$("#divPagContratos").prop("disabled", false); 
         deshabilita(false);
         $("#divPagContratos").empty();
 
@@ -155,7 +150,6 @@
                     .text(i)
             } else {
                 var pag_enlace = divPag.append("a")
-                    //.attr("id", "page_left")
                     .attr("class", "page_left")
                     .attr("role", "button")
                     .attr("data-page", i)
@@ -171,7 +165,6 @@
         }
 
         if (pag_actual < totalPag) {
-            //(totalPag - pag_actual) > cant_por_linea
             if (fin < totalPag) {
                 var pag_enlace_der = divPag.append("a")
                     .attr("id", "page_right")
@@ -236,13 +229,7 @@
                         var cuentaentrada = 0;
                         $("#srcContratos").html("");
                         for (var i = 0; i < info.length; i++) {
-                            //if (i > 0 && proceso != info[i].CodigoProceso.toString()) {
-                            //    fila += filaconfirma + '</div>' + referencia + '</div>';
-                            //    filaconfirma = "";
-                            //    estado = "";
-                            //    cuentaentrada=0;
 
-                            // }
                             if (proceso != info[i].codigoProceso.toString()) {
                                 if (i > 0) //Cambio de entidad
                                 {
@@ -256,14 +243,10 @@
                                     cuentaentrada = 0;
                                 }
 
-                                //inicio = '<div class="cotractName"><div class="row"><div class="col-xs-12 col-md-12"><span class="small">Entidad</span><div class="clearfix"></div>'
-                                //    + '                 <span class="h4">' + info[i].UnidadCompra.toString() + '</span>'
-                                //    + ' </div></div></div>';
                                 entidad = info[i].unidadCompra.toString();
                             }
 
-                            //adjudicacion = info[i].UrlResumenAdjudicacion;
-                            //invitados = info[i].UrlInvitados;
+
 
                             if (proceso != info[i].codigoProceso.toString()) {
 
@@ -330,15 +313,8 @@
                                 fila += '</div>'
                                     + '<div class="clearfix"></div>';
 
-                                //filaconfirma += ' <div class="related-contracts">'
-                                //             + '     <span class="h4">Contratos en estado ' + $("#top_contratista_estados option:selected").text() + ' asociados a este proceso:</span>'
-                                //             + '     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
                                 proceso = info[i].codigoProceso.toString();
 
-
-                                //referencia = '<div class="row text-center">'
-                                //+ '<div class="col-xs-12 col-md-12"><a href="' + info[i].DocURL.toString() + '" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> <span class="txt_small">Conozca mas de este proceso</span></a></div>'
-                                //    + '</div>';
 
                                 referencia = '<div class="wrap-btn p15">'
                                     + '  <a href="' + info[i].docURL.toString() + '" target="_blank" class="btn btn-primary btn-outlined">'
@@ -428,13 +404,9 @@
 
                                 filaconfirma += '                    </div>';
 
-                                if (info[i].fechaIncioPublicacionProceso) {//info[i].OfertaPeriodoDuracion || 
+                                if (info[i].fechaIncioPublicacionProceso) {
                                     filaconfirma += '                    <div class="row border-b">'
-                                    //    + '                        <div class="col-xs-6 col-md-3"><span class="small"> DURACIÓN </span><span class="amount_adj">';
 
-                                    //if (info[i].OfertaPeriodoDuracion) { filaconfirma += info[i].OfertaPeriodoDuracion.toString(); }
-
-                                    //filaconfirma += '                   Días</span></div>';
 
                                     filaconfirma += '                  <div class="col-xs-6 col-md-3"><span class="small"> FECHA DE FIRMA CONTRATO</span><span class="amount_adj">';
 
@@ -475,7 +447,7 @@
                                 cuentaentrada = cuentaentrada + 1;
 
                             }
-                            //+ '  </div>';
+
                         }
 
 
@@ -553,7 +525,6 @@ $("#entidadfiona").on("keyup", function (event) {
                 } else {
                     $("#divNoEncontradoFiona").hide();
                     response($.map(datos.nombre, function (item) {
-                        //x alert(item);
                         return {
                             label: item,
                             value: item
@@ -575,9 +546,7 @@ $("#entidadfiona").on("keyup", function (event) {
     delay: 300,
     minLength: 3,
     select: function (event, ui) {
-        //$(this).val(ui.item.Nombre).next().val(ui.item.Id);
-        //$("#divResultados").html("");
-        //return false;
+
     }
 }).bind('blur onblur', function () {
     if ($(this).val() == "") {

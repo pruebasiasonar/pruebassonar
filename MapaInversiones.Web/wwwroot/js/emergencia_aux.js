@@ -53,7 +53,6 @@ function getArticulosGraphic(opcion) {
 function getArticulosGraphicProc(opcion) {
     switch (opcion) {
         case "entidad":
-            //console.log("Datos procesos entidad:", JSON.stringify(objPerProcesos, null, 2));
             loadTreeMapGraphProc("divGraphRecursosProcesos", objPerProcesos, ["labelGroup", "label_inf"], 0, "");
             break;
         case "articulo":
@@ -177,7 +176,6 @@ function loadTreeMapGraph(divContenedor, objData, agrupador, nivel, origen) {
             })
             .config({
                 threshold: limitePorc,
-                //thresholdName: titulo,
                 data: objData,
                 groupBy: agrupador,
                 height: 400,
@@ -249,36 +247,13 @@ function loadTreeMapGraph(divContenedor, objData, agrupador, nivel, origen) {
             .on("click.shape", function (d) {
                 if (d["labelGroup"] != undefined && d["labelGroup"] != null) {
                     if (nivel == 0) {
-                        //var vec_orig = d["labelGroup"].toString().split(",");
-                        //if (vec_orig.length == 1) {
+
                             var data_pagina = jQuery.grep(objPerContratos, function (n, i) {
                                 return (n.labelGroup == d["labelGroup"].toString()); // vec_orig[0]);
                             });
-                            //loadTreeMapGraphProc("divGraphRecursosProcesos", data_pagina, ["label_inf"], 1, "btn");
                             loadTreeMapGraph("divGraphRecursosObj", data_pagina, ["label_inf"], 1, "btn");
                             $(".btnback").show();
-                        //} else {
-                        //    var vec_orig = d["labelGroup"].toString().split(",");
-                        //    var objReturn = [];
-                        //    for (var i = 0; i < vec_orig.length; i++) {
-                        //        var actual = vec_orig[i];
-                        //        var data_pagina = jQuery.grep(objPerContratos, function (n, i) {
-                        //            return (n.labelGroup == actual);
-                        //        });
-                        //        if (data_pagina != null) {
-                        //            if (data_pagina.length > 0) {
-                        //                for (var k = 0; k < data_pagina.length; k++) {
-                        //                    objReturn.push(data_pagina[k]);
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-
-                        //    //loadTreeMapGraphProc("divGraphRecursosProcesos", objReturn, ["label_inf"], 1, "btn");
-                        //    loadTreeMapGraph("divGraphRecursosObj", objReturn, ["label_inf"], 1, "btn");
-                        //    $(".btnback").show();
-
-                        //}
+                      
                     }
                 }
 
@@ -435,34 +410,12 @@ function loadTreeMapGraphProc(divContenedor, objData, agrupador, nivel, origen) 
             .on("click.shape", function (d) {
                 if (d["labelGroup"] != undefined && d["labelGroup"] != null) {
                     if (nivel == 0) {
-                        //var vec_orig = d["labelGroup"].toString().split(",");
-                        //if (vec_orig.length == 1) {
                             var data_pagina = jQuery.grep(objPerProcesos, function (n, i) {
                                 return (n.labelGroup == d["labelGroup"].toString());// vec_orig[0]);
                             });
                             loadTreeMapGraphProc("divGraphRecursosProcesos", data_pagina, ["label_inf"], 1, "btn");
                             $(".btnback").show();
-                        //} else {
-                        //    var vec_orig = d["labelGroup"].toString().split(",");
-                        //    var objReturn = [];
-                        //    for (var i = 0; i < vec_orig.length; i++) {
-                        //        var actual = vec_orig[i];
-                        //        var data_pagina = jQuery.grep(objPerProcesos, function (n, i) {
-                        //            return (n.labelGroup == actual);
-                        //        });
-                        //        if (data_pagina != null) {
-                        //            if (data_pagina.length > 0) {
-                        //                for (var k = 0; k < data_pagina.length; k++) {
-                        //                    objReturn.push(data_pagina[k]);
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-
-                        //    loadTreeMapGraphProc("divGraphRecursosProcesos", objReturn, ["label_inf"], 1, "btn");
-                        //    $(".btnback").show();
-
-                        //}
+                       
                     }
                 }
 

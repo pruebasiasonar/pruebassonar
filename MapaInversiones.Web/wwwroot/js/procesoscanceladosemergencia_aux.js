@@ -3,10 +3,8 @@ var cant_graficas = 3;
 var cant_contratos = 3;
 var scrol = 0;
 
-/*var procesoaData = JSON.parse(document.body.getAttribute('data-proceso'))[0].codigoProceso;*/
 var tipoemergencia = JSON.parse(document.body.getAttribute('data-tipoEmergencia'))[0].tipoEmergencia;
 var unidadcompra = JSON.parse(document.body.getAttribute('data-unidadcompra'))[0].unidadcompra;
-//alert(procesoaData);
 inicializaDatos();
 
 function inicializaDatos() {
@@ -18,12 +16,9 @@ function inicializaDatos() {
         $("#grpentidad").css("display", "none");
     }
 
-    //if (procesoaData) {
-    //    getContratos(1, cant_contratos, procesoaData, $('#entidadProcesoG').val(), $('#proceso').val(), tipoemergencia);
-    //}
-    //else {
+
         getContratos(1, cant_contratos, "", $('#entidadProcesoG').val(), $('#proceso').val(), tipoemergencia);
- /*   }*/
+
 
 }
 
@@ -104,9 +99,9 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
     var pag_actual = parseInt(actual);
     pagina_actual = pag_actual;
     var pagesHTML = '';
-    //var cant_por_pag = 6;
+
     var cant_por_linea = 10;
-    //$("#divPagContratos").prop("disabled", false); 
+
     deshabilita(false);
     $("#divPagContratos").empty();
 
@@ -154,7 +149,7 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
                 .text(i)
         } else {
             var pag_enlace = divPag.append("a")
-                //.attr("id", "page_left")
+
                 .attr("class", "page_left")
                 .attr("role", "button")
                 .attr("data-page", i)
@@ -170,7 +165,7 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
     }
 
     if (pag_actual < totalPag) {
-        //(totalPag - pag_actual) > cant_por_linea
+
         if (fin < totalPag) {
             var pag_enlace_der = divPag.append("a")
                 .attr("id", "page_right")
@@ -187,7 +182,7 @@ function dibujaPaginacionContrato(actual, total, totalPag, cant_por_pag) {
     $('#page_right,#page_left,.page_left,.page_right').bind('click', function () {
 
         deshabilita(true);
-        //$('#divPagContratos').attr('disabled', 'disabled');
+
         d3.select("#divProyectos").empty();
         pagina_actual = $(this).attr("data-page");
 
@@ -260,8 +255,7 @@ function getContratos(pagina, registros, codigo, entidad, proceso, tipoemergenci
                             entidad = info[i].unidadCompra.toString();
                         }
 
-                        //adjudicacion = info[i].UrlResumenAdjudicacion;
-                        //invitados = info[i].UrlInvitados;
+
 
                         if (proceso != info[i].codigoProceso.toString()) {
 

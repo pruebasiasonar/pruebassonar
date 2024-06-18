@@ -69,12 +69,10 @@ function getAnnio(moneda, nombreProceso = null) {
                 data: filtros,
                 success: function (data) {
                     deshabilita(true);
-                    //alert(JSON.stringify(data));
 
                     var items_result = data.detalles;
                     var annios = [];
                     var select = "";
-                   // select = select + '<option value="0">Todos</option>';
                     for (var i = 0; i < items_result.length; i++) {
 
                         if (!annios.includes(items_result[i].valor.toString())) {
@@ -87,7 +85,6 @@ function getAnnio(moneda, nombreProceso = null) {
                     $('#top_contratos_periodos').html(select).fadeIn();
                     if (items_result.length > 0) {
                         $("#top_contratos_periodos").val($('#maxyear').val());
-                        //$("#top_contratos_periodos").attr("default", items_result[items_result.length - 1].valor.toString());
                         getContratos($("#top_contratos_periodos option:selected").val(), 1, cant_contratos, $("#top_origen_informacion option:selected").val(), "", $('#proceso').val(), $("#moneda").val());
 
                     } else {
@@ -123,8 +120,7 @@ function getAnnio(moneda, nombreProceso = null) {
 
         $("#btnLimpiar").click(function () {
             if (!disableClick) {
-                //$("#top_contratos_periodos").val(0);
-                //$("#top_contratos_estados").val("");
+
                 $("#top_origen_informacion").val("");
                 $("#entidad").val("");
                 $("#proceso").val("");
@@ -195,7 +191,6 @@ function getAnnio(moneda, nombreProceso = null) {
                         .text(i)
                 } else {
                     var pag_enlace = divPag.append("a")
-                        //.attr("id", "page_left")
                         .attr("class", "page_left")
                         .attr("role", "button")
                         .attr("data-page", i)
@@ -228,7 +223,6 @@ function getAnnio(moneda, nombreProceso = null) {
             $('#page_right,#page_left,.page_left,.page_right').bind('click', function () {
                
                 deshabilita(true);
-                //$('#divPagContratos').attr('disabled', 'disabled');
                 d3.select("#divProyectos").empty();
                 pagina_actual = $(this).attr("data-page");
 
@@ -299,16 +293,7 @@ function getAnnio(moneda, nombreProceso = null) {
 
                                 if (proceso != info[i].codigoProceso.toString()) {
                                     
-                                    //fila += '<div class="processName">'
-                                    //    + '		<div class="row">'
-                                    //    + '			<div class="col-xs-12 col-md-6">'
-                                    //    + '				<span class="small">Origen de los fondos</span><div class="clearfix"></div>'
-                                    //    + '				<span class="h4">' + info[i].origenFondos.toString() + '</span>  </div>'
-                                    //    + '			<div class="col-xs-12 col-md-6">'
-                                    //    + '				<span class="small">Fuente de Datos</span><div class="clearfix"></div>'
-                                    //    + '				<span class="h4">' + info[i].origenInformacion.toString().toUpperCase().replace("ONCAE - CATALOGO ELECTRÓNICO", "ONCAE - CATÁLOGO ELECTRÓNICO") + '</span>  </div> '
-                                    //    + '      </div> '
-                                        //+ '	</div>';
+
                                     fila += '<div class="contractNumberRP"><span class="">Código proceso: </span>'
                                         + '	<span class="text-bold">' + info[i].codigoProceso.toString() + '</span></div>'
                                         + '<div class="contractNumberRP"><span class="">Proceso: </span>'
@@ -408,10 +393,7 @@ function getAnnio(moneda, nombreProceso = null) {
                                     + '                        <div class="col-xs-6 col-md-6"><span class="small"> VALOR CONTRATADO</span><span class="amount_adj"> ' + moneda + ' ' + (info[i].valorContratado * 1).formatMoney(2, '.', ',').toString() + '</span></div>'
                                     + '                        <div class="col-xs-6 col-md-6"><span class="small"> MONEDA</span><span class="amount_adj"> ' + info[i].monedaContrato.toString() + ' </span></div>'
                                    + '                    </div>'
-                                   //+ '                    <div class="row border-b">'
-                                   //+ '                        <div class="col-xs-6 col-md-6"><span class="small"> MONTO</span><span class="amount_adj"> ' + moneda + ' ' + (info[i].valorContratado * 1).formatMoney(1, '.', ',').toString() + ' </span></div>'
-                                   //+ '                        <div class="col-xs-6 col-md-6"><span class="small"> MONEDA</span><span class="amount_adj">' + info[i].monedaContrato.toString() + '</span></div>' //DOP 
-                                   //+ '                    </div>';
+
 
                                 filaconfirma += '                    <div class="row border-b">';
 
@@ -476,7 +458,7 @@ function getAnnio(moneda, nombreProceso = null) {
                                 filaconfirma += '                 </div>'
                                 + '            </div>'
                                 + '        </div>';
-                                //+ '  </div>';
+                                
                             }
 
 
@@ -552,7 +534,6 @@ $("#entidad").on("keyup", function (event) {
                 } else {
                     $("#divNoEncontrado").hide();
                     response($.map(datos.contratosPerAnyo, function (item) {
-                        //x alert(item);
                         return {
                             label: item.label,
                             value: item.label
@@ -574,9 +555,7 @@ $("#entidad").on("keyup", function (event) {
     delay: 300,
     minLength: 1,
     select: function (event, ui) {
-        //$(this).val(ui.item.Nombre).next().val(ui.item.Id);
-        //$("#divResultados").html("");
-        //return false;
+
     }
 }).bind('blur onblur', function () {
     if ($(this).val() == "") {

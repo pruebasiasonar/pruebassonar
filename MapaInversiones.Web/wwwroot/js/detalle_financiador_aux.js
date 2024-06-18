@@ -1,8 +1,7 @@
 ﻿var loader_proy = "<div class=\"MIVloader\">&nbsp;</div>";
 var anio = $("#anios_financiador option:selected").val();
 var codigoFinanciador = $("#codigo_financiador").text().trim();
-//var sectorId = '0';
-//var sector = '';
+
 var paginaActual = 1;
 var totalPorPagina = 10;
 var finData = 0;
@@ -107,7 +106,7 @@ function obtenerInformacionMontoFinanciado(data) {
     $("#detalleMontoProyectosOrganismoFinanciador").html(html);
 }
 function obtenerInformacionEstadoProyectos(data) {
-    //console.log("data", data);
+
     var html = "";
     for (var i = 0; i < data.estados.length; i++) {
         html = html + '<div class="col-lg-2 mb-4">'
@@ -234,11 +233,7 @@ function generarGraficoProyectosFinanciadosPorSectores(objData) {
                             case 0:
                                 cad = d.labelGroup;
                                 break;
-                            //case 1:
-                            //    cad = d.label;
-                            //    break;
-                            //default:
-                            //    cad = d.labelGroup;
+
                         }
                         if (cad.length > longitud_tooltip) {
                             cad = cad.substr(0, longitud_tooltip) + "...";
@@ -298,9 +293,9 @@ function generarDivTablaDeProyectos() {
     }
 }
 function generarDivTablaProyectosPorPagina(proyectosPorPagina) {
-    var divListadoProyectos = ''; // '<div class="card-entidades-group">';
+    var divListadoProyectos = ''; 
     proyectosPorPagina.forEach(x => { divListadoProyectos = divListadoProyectos + generarDivProyecto(x); });
-    divListadoProyectos = divListadoProyectos; //divListadoProyectos + '</div>';
+    divListadoProyectos = divListadoProyectos; 
     $("#table_proyectos_financiador_annio").html(divListadoProyectos);
 }
 function generarDivProyecto(proyecto) {
@@ -427,8 +422,7 @@ function obtenerDatosPerOrganismos(anyo, opcion, tipo) {
     global_tab = "organismo";
     global_sankey = [];
     miga_pan = "";
-    //$("#divPagFichas").html("");
-    //$("#divListado").empty();
+
     $("#sankey_basic").html(loader_proy);
     $.ajax({
         contentType: "application/json; charset=utf-8",
@@ -855,7 +849,6 @@ function agruparNodos(objData) {
             var porc = 0;
             if (nivel == "n4") {
                 if (mayorValor > 0) {
-                    //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
                     porc = Math.round((valor / mayorValor) * 100, 0);
                 }
                 if (porc >= porc_agrup_sectores) {
@@ -1106,7 +1099,7 @@ function graphSankey(datos) {
             .style("stroke-width", function (d) {
                 return Math.max(1, d.dy);
             })
-        //.sort(function (a, b) { return b.dy - a.dy; });
+
         // add the link titles
         link.selectAll(".link").append("title")
             .text(function (d) {
@@ -1367,7 +1360,7 @@ function graphSankey(datos) {
             const result = miga_pan.replace(regex, '');
             if (opcion == 3) {
                 cant = 0;
-                //if (cant_padres > 0) {
+
 
                 if (vecSelect[0] == "n1") {
                     var filteredData = obtenerHijosYnietosConMismaRama(selection, global_sankey.links, "n4|");
@@ -1427,7 +1420,7 @@ function graphSankey(datos) {
                                         }, -Infinity);
                                         var porc = 0;
                                         if (mayorValor > 0) {
-                                            //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
+
                                             porc = Math.round((valor / mayorValor) * 100, 0);
                                         }
                                         if (porc >= porc_agrup_organismos) {
@@ -1533,7 +1526,7 @@ function graphSankey(datos) {
                                     if (nivel_destino == "n4") {
                                         //proyectos de inversion
                                         if (mayorValor > 0) {
-                                            //porc = Math.round((valor / valor_grupo[0].value) * 100, 0);
+
                                             porc = Math.round((valor / mayorValor) * 100, 0);
                                         }
                                         if (porc >= porc_agrup_sectores) {
