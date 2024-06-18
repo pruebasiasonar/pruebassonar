@@ -3,7 +3,8 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- @{
+@{
+    var decreto = "";
     var etiquetas = await Orchard.GetContentItemByHandleAsync("alias:Etiquetas");
     var LabelEmergencias = "";
     var TituloEmergencias = "";
@@ -556,7 +557,7 @@
                                 <h2>Conozca</h2>
                             </div>
                             <p>Proceso para realizar compras de emergencia deacuerdo a la circular DGCP44-PNP-2022-0005</p>
-                            <div class="btn btn-primary"><a href="https://www.dgcp.gob.do/wp-content/uploads/page/Circ005.pdf" target="_blank">Ver <i class="material-icons md-22">chevron_right</i> </a></div>
+                            <div class="btn btn-primary"><a href="https://www.dgcp.gob.do/wp-content/uploads/page/Circ005.pdf" target="_blank" rel="noopener">Ver <i class="material-icons md-22">chevron_right</i> </a></div>
                         </div>
                     </div>
                 </div>
@@ -571,13 +572,12 @@
                             </div>
                             <p>Conozca el decreto en el cual se declara de emergencia las compras y contrataciones de bienes y servicios para ser utilizadas en las labores de ayuda humanitaria.</p>
                             <div class="btn btn-primary">
-                                <a href="                            @if (Model.TipoEmergencia == null || Model.TipoEmergencia == 2) {
-                                <text>https://presidencia.gob.do/decretos/537-22</text>
-                            }
-                            @if (Model.TipoEmergencia == 5)
-                            {
-                                <text>https://presidencia.gob.do/decretos/585-23</text>
-                            }" target="_blank">Ver <i class="material-icons md-22">chevron_right</i></a>
+                                @if (TituloDecreto != null && TituloDecreto.Split(" ").Count() > 1)
+                                {
+                                    decreto = @TituloDecreto.Split(" ")[1];
+                                }
+
+                                <a href="https://presidencia.gob.do/decretos/@decreto" target="_blank" rel="noopener">Ver <i class="material-icons md-22">chevron_right</i></a>
                             </div>
                         </div>
                     </div>
